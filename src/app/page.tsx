@@ -38,10 +38,15 @@ export default function Home() {
 
           <div className="mt-10 p-12 rounded-xl inline-flex flex-col shadow-2xl">
             <div className="grid grid-cols-2 gap-12">
-              {["yellow", "pink", "orange", "blue"].map((color, index) => (
+              {[
+                "from-yellow-400 to-yellow-500",
+                "from-pink-400 to-pink-500",
+                "from-orange-400 to-orange-500",
+                "from-blue-400 to-blue-500",
+              ].map((gradient, index) => (
                 <div
                   key={index}
-                  className={`bg-${color}-400 w-96 h-56 rounded-lg shadow-xl`}
+                  className={`bg-gradient-to-r ${gradient} w-96 h-56 rounded-lg shadow-xl`}
                 ></div>
               ))}
             </div>

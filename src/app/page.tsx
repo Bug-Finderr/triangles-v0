@@ -13,7 +13,7 @@ export default function Home() {
         <div className="flex justify-between items-center">
           <Image src={icon} alt="Triangles Icon" height={32} />
 
-          <nav className="space-x-12 font-bold text-xl">
+          <nav className="space-x-12 font-bold text-xl text-teal-950">
             <a href="#home">Home</a>
             <a href="#about">About Us</a>
             <a href="#events">Events</a>
@@ -79,13 +79,13 @@ export default function Home() {
         {/* About Us Section */}
         <section id="about" className="py-16">
           <div className="container mx-auto text-center">
-            <h2 className="text-5xl font-black mb-4">About Us</h2>
-            <p className="text-gray-700 max-w-4xl mx-auto text-lg">
-              At Triangles, we believe in pushing boundaries and creating
-              innovative solutions that redefine the way businesses and
-              individuals engage with technology. Founded in 2024, our startup
-              is driven by a passion for technology and a vision to deliver
-              cutting-edge products that make a real difference.
+            <h2 className="text-5xl font-black mb-4 text-teal-950">About Us</h2>
+            <p className="text-gray-700 max-w-3xl mx-auto text-lg">
+              The journey of discovery never ends. <strong>Triangles</strong> is
+              the launchpad for these endless possibilities.{" "}
+              <strong>Discover your spark</strong> from an array of
+              opportunities and collaborate with peers to unlock your full
+              potential because yours learning journey is just the beginning.
             </p>
           </div>
         </section>

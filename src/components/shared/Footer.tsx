@@ -1,16 +1,6 @@
-import Image from "next/image";
+import { LinkedInIcon, MailIcon, PhoneIcon } from "@/components/ui/Icons";
 import logo from "@/public/Logo.png";
-import {
-  MailIcon,
-  PhoneIcon,
-  InstagramIcon,
-  FacebookIcon,
-  TwitterIcon,
-  LinkedInIcon,
-  TelegramIcon,
-  YoutubeIcon,
-  DiscordIcon,
-} from "@/components/ui/Icons";
+import Image from "next/image";
 
 const LinkList = ({
   title,
@@ -68,7 +58,7 @@ export default function Footer() {
     <footer className="bg-gray-100">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center border-b-2 border-black py-12">
-          <h2 className="text-2xl font-bold mb-4 text-center md:text-left">
+          <h2 className="text-2xl font-bold text-center md:text-left text-teal-950">
             Join our newsletter to <br />
             keep up to date with us!
           </h2>
@@ -79,7 +69,7 @@ export default function Footer() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="px-4 py-2 border border-gray-400 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-600"
+              className="px-4 py-2 w-96 border border-gray-400 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-600"
               aria-label="Email input"
             />
             <button
@@ -101,45 +91,31 @@ export default function Footer() {
               className="mb-4"
               loading="lazy"
             />
-            <p className="font-semibold border-dashed pb-2 border-b-2 border-black">
-              Find opportunities for you.
-            </p>
-            <div className="grid gap-2">
-              <p className="font-bold text-2xl text-teal-950 mt-4 mb-2">
-                Stay Connected
-              </p>
-              <p className="font-medium text-lg">Sales Enquires</p>
+            <div className="grid gap-2 text-teal-950">
+              <p className="font-bold text-2xl">Stay Connected</p>
               <a
                 href="mailto:abc@gmail.com"
                 className="text-gray-700 hover:text-gray-900 flex items-center gap-2"
               >
                 <MailIcon size={18} />
-                abc@gmail.com
+                contact@triangles.site
               </a>
               <a
-                href="tel:+91-8984797432"
+                href="tel:+91-7982048679"
                 className="text-gray-700 hover:text-gray-900 flex items-center gap-2"
               >
                 <PhoneIcon size={16} />
-                +91-8984797432
+                +91-7982048679
               </a>
-              <p className="font-medium text-lg">Support Inquiries</p>
               <a
-                href="mailto:support@gmail.com"
-                className="text-gray-700 hover:text-gray-900 flex items-center gap-2"
+                href="https://www.linkedin.com/company/official-triangles"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal-950 hover:text-gray-900 flex items-center gap-2"
               >
-                <MailIcon size={18} />
-                support@gmail.com
+                <LinkedInIcon size={16} />
+                Official-Triangles
               </a>
-              <div className="flex justify-between mt-4 mr-8">
-                <InstagramIcon size={24} />
-                <FacebookIcon size={22} />
-                <TwitterIcon size={22} />
-                <LinkedInIcon size={22} />
-                <TelegramIcon size={24} />
-                <YoutubeIcon size={24} />
-                <DiscordIcon size={24} />
-              </div>
             </div>
           </div>
 

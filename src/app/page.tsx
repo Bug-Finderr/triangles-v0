@@ -29,7 +29,7 @@ import {
   ClockIcon,
   PeopleIcon,
   XIcon,
-} from "@/components/ui/icons";
+} from "@/components/ui/iconsTemp";
 import { Input } from "@/components/ui/input";
 import icon from "@/public/Icon.svg";
 import logo from "@/public/Logo.svg";
@@ -59,7 +59,7 @@ export default function Home() {
   const events = generateEvents(10);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [bookmarkedEvents, setBookmarkedEvents] = useState<Set<number>>(
-    new Set(),
+    new Set()
   );
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
@@ -87,7 +87,7 @@ export default function Home() {
         }
       });
     },
-    [events.length],
+    [events.length]
   );
 
   useEffect(() => {
@@ -106,7 +106,7 @@ export default function Home() {
             "fixed md:relative inset-0 w-full h-full md:w-auto md:h-auto bg-white md:bg-transparent z-50 md:flex items-center transition-transform duration-300 ease-in-out",
             mobileMenuOpen
               ? "translate-x-0"
-              : "-translate-x-full md:translate-x-0",
+              : "-translate-x-full md:translate-x-0"
           )}
         >
           <div className="flex flex-col md:flex-row items-center justify-center h-full md:h-auto">

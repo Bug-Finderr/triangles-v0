@@ -35,10 +35,20 @@ const LinkList: React.FC<LinkListProps> = ({ title, links }) => (
 );
 
 const footerLinks = {
-  social: [{ name: "official-triangles", href: "#", icon: <LinkedInIcon /> }],
+  social: [
+    {
+      name: "official-triangles",
+      href: "https://www.linkedin.com/company/official-triangles",
+      icon: <LinkedInIcon />,
+    },
+  ],
   contact: [
-    { name: "contact@triangles.site", href: "#", icon: <MailIcon /> },
-    { name: "+91-7982048679", href: "#", icon: <PhoneIcon /> },
+    {
+      name: "contact@triangles.site",
+      href: "mailto:contact@triangles.site",
+      icon: <MailIcon />,
+    },
+    { name: "+91-7982048679", href: "tel:+917982048679", icon: <PhoneIcon /> },
   ],
   opportunities: [
     { name: "Events", href: "#" },

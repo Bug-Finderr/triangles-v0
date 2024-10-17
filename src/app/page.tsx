@@ -29,7 +29,7 @@ import {
   ClockIcon,
   PeopleIcon,
   XIcon,
-} from "@/components/ui/iconsTemp";
+} from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import icon from "@/public/Icon.svg";
 import logo from "@/public/Logo.svg";
@@ -55,13 +55,23 @@ const generateEvents = (count: number): Event[] =>
     ],
   }));
 
+const colorClasses: { [key: string]: string } = {
+  yellow: "from-yellow-400 to-yellow-500",
+  pink: "from-pink-400 to-pink-500",
+  orange: "from-orange-400 to-orange-500",
+  blue: "from-blue-400 to-blue-500",
+};
+
+// TODO: Add Skeleton for the events if necessary
 export default function Home() {
   const events = generateEvents(10);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [bookmarkedEvents, setBookmarkedEvents] = useState<Set<number>>(
     new Set()
   );
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const router = useRouter();
 
   const toggleBookmark = useCallback((id: number) => {
@@ -179,13 +189,14 @@ export default function Home() {
             alt="Triangles Logo"
             height={144}
             className="mx-auto"
+            loading="eager"
           />
           <div className="mt-10 p-4 md:p-10 rounded-xl md:rounded-[3rem] inline-flex flex-col shadow-2xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-12">
               {["yellow", "pink", "orange", "blue"].map((color) => (
                 <div
                   key={color}
-                  className={`bg-gradient-to-r from-${color}-400 to-${color}-500 w-full h-40 md:w-[350px] md:h-[200px] rounded-3xl shadow-xl`}
+                  className={`bg-gradient-to-r ${colorClasses[color]} w-full h-40 md:w-[350px] md:h-[200px] rounded-3xl shadow-xl`}
                 />
               ))}
             </div>

@@ -15,7 +15,7 @@ interface LinkListProps {
 }
 
 const LinkList: React.FC<LinkListProps> = ({ title, links }) => (
-  <div className="mb-8 md:mb-0">
+  <div className="mb-8 lg:mb-0">
     <h3 className="font-bold mb-4 text-lg text-teal-950">{title}</h3>
     <ul className="space-y-2">
       {links.map((link, index) => (
@@ -66,36 +66,16 @@ const footerLinks = {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="mt-20 md:mt-32 px-4 md:px-16">
-      <div className="px-4 md:px-24 flex flex-col md:flex-row justify-between">
-        <div className="hidden md:block">
+    <footer className="mt-20 lg:mt-32 px-4 md:px-16">
+      <div className="px-4 lg:px-24 flex flex-col lg:flex-row justify-between">
+        <div className="hidden lg:block mr-16">
           <Image src={logo} alt="Triangles Logo" height={112} />
         </div>
-        <div className="grid md:grid-cols-4 md:gap-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-20">
           <LinkList title="Follow Us" links={footerLinks.social} />
           <LinkList title="Contact Us" links={footerLinks.contact} />
           <LinkList title="Opportunities" links={footerLinks.opportunities} />
           <LinkList title="Company" links={footerLinks.company} />
-        </div>
-      </div>
-      <div className="md:mt-10 border-t border-black py-4 px-4 md:px-8 text-xs text-gray-500">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <span>
-            © {new Date().getFullYear()} Triangles. All rights reserved.
-          </span>
-          <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-12">
-            {[
-              "Privacy Policy",
-              "Terms of Service",
-              "Sales and Refunds",
-              "Legal",
-              "Site Map",
-            ].map((item) => (
-              <span key={item} className="whitespace-nowrap">
-                {item}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

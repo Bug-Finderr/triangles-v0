@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import Footer from "@/components/shared/Footer";
+import Footer from "@/components/shared/footerRename";
+import Navbar from "@/components/shared/navbar";
 import {
   Accordion,
   AccordionContent,
@@ -21,19 +19,19 @@ import {
 } from "@/components/ui/card";
 import {
   ArrowRightIcon,
-  BarsIcon,
   BookmarkIcon,
   BookmarkOutlineIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   ClockIcon,
   PeopleIcon,
-  XIcon,
 } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import icon from "@/public/Icon.svg";
 import logo from "@/public/Logo.svg";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
 
 interface Event {
   id: number;
@@ -70,7 +68,6 @@ export default function Home() {
   const [bookmarkedEvents, setBookmarkedEvents] = useState<Set<number>>(
     new Set()
   );
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const router = useRouter();
 
@@ -100,85 +97,10 @@ export default function Home() {
     [events.length]
   );
 
-  useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? "hidden" : "unset";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [mobileMenuOpen]);
-
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="py-3 px-4 md:px-24 flex justify-between items-center z-50 sticky top-0 bg-white shadow-sm">
-        <Image src={icon} alt="Triangles Icon" height={28} />
-        <nav
-          className={cn(
-            "fixed md:relative inset-0 w-full h-full md:w-auto md:h-auto bg-white md:bg-transparent z-50 md:flex items-center transition-transform duration-300 ease-in-out",
-            mobileMenuOpen
-              ? "translate-x-0"
-              : "-translate-x-full md:translate-x-0"
-          )}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-center h-full md:h-auto">
-            {["Home", "About Us", "Events"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="text-xl md:text-base font-bold text-teal-950 hover:text-teal-600 transition-colors py-4 md:py-0 md:mx-6"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-            <Button
-              size="lg"
-              className="mt-6 md:hidden"
-              onClick={() => router.push("/coming-soon")}
-            >
-              Login
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="mt-6 md:hidden"
-              onClick={() => router.push("/coming-soon")}
-            >
-              Host
-            </Button>
-          </div>
-        </nav>
-        <div className="flex gap-2 md:gap-4 items-center">
-          <Button
-            size="sm"
-            className="hidden md:inline-flex"
-            onClick={() => router.push("/coming-soon")}
-          >
-            Login
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="hidden md:inline-flex"
-            onClick={() => router.push("/coming-soon")}
-          >
-            Host
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="md:hidden z-50"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <XIcon className="h-6 w-6" />
-            ) : (
-              <BarsIcon className="h-6 w-6" />
-            )}
-          </Button>
-        </div>
-      </header>
-
-      <main className="flex-1">
+      <Navbar />
+      <main className="flex-1 md:mx-12">
         {/* Hero Section */}
         <section
           id="home"
@@ -191,12 +113,12 @@ export default function Home() {
             className="mx-auto"
             loading="eager"
           />
-          <div className="mt-10 p-4 md:p-10 rounded-xl md:rounded-[3rem] inline-flex flex-col shadow-2xl">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-12">
+          <div className="mt-10 p-4 lg:p-10 rounded-xl lg:rounded-[3rem] inline-flex flex-col shadow-2xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-12">
               {["yellow", "pink", "orange", "blue"].map((color) => (
                 <div
                   key={color}
-                  className={`bg-gradient-to-r ${colorClasses[color]} w-full h-40 md:w-[350px] md:h-[200px] rounded-3xl shadow-xl`}
+                  className={`bg-gradient-to-r ${colorClasses[color]} w-full h-40 lg:w-[350px] lg:h-[200px] md:w-[250px] md:h-[150px] rounded-3xl shadow-xl`}
                 />
               ))}
             </div>
@@ -210,10 +132,10 @@ export default function Home() {
         </section>
 
         {/* Featured Events */}
-        <section id="events" className="mt-20 md:mt-32 mx-4 md:mx-40">
+        <section id="events" className="mt-20 lg:mt-32 mx-4 lg:mx-40">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2 text-teal-950">
+              <h2 className="text-3xl lg:text-4xl font-bold mb-2 text-teal-950">
                 Featured
               </h2>
               <p>Featured Events</p>
@@ -236,6 +158,7 @@ export default function Home() {
             </div>
           </div>
 
+          {/* TODO: Do something with this way of carousel */}
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out py-4"
@@ -319,11 +242,11 @@ export default function Home() {
         </section>
 
         {/* About Us Section */}
-        <section id="about-us" className="mt-20 md:mt-32 text-center px-8">
-          <h2 className="text-3xl md:text-[40px] font-black mb-4 text-teal-950">
+        <section id="about-us" className="mt-20 lg:mt-32 text-center px-8">
+          <h2 className="text-3xl lg:text-[40px] font-black mb-4 text-teal-950">
             About Us
           </h2>
-          <p className="text-gray-700 max-w-6xl mx-auto text-base md:text-lg">
+          <p className="text-gray-700 max-w-6xl mx-auto text-base lg:text-lg">
             The journey of discovery never ends. <strong>Triangles</strong> is
             the launchpad for these endless possibilities.{" "}
             <strong>Discover your spark</strong> from an array of opportunities
@@ -333,17 +256,17 @@ export default function Home() {
         </section>
 
         {/* Founders Section */}
-        <section id="founders" className="mt-20 md:mt-32 text-center px-8">
-          <h2 className="text-3xl md:text-[40px] font-black mb-4 text-teal-950">
+        <section id="founders" className="mt-20 lg:mt-32 text-center px-8">
+          <h2 className="text-3xl lg:text-[40px] font-black mb-4 text-teal-950">
             Meet The Founders
           </h2>
-          <div className="flex flex-col md:flex-row justify-center md:gap-40 mt-8 md:mt-16">
+          <div className="flex flex-col lg:flex-row justify-center lg:gap-40 mt-8 lg:mt-16 items-center">
             {Array.from({ length: 2 }).map((_, index) => (
               <Card
                 key={index}
-                className="flex flex-col md:flex-row bg-gradient-to-br from-teal-50 to-teal-100 max-w-xl rounded-3xl shadow-2xl mb-8 md:mb-0"
+                className="flex flex-col lg:flex-row bg-gradient-to-br from-teal-50 to-teal-100 max-w-xl rounded-3xl shadow-2xl mb-8 lg:mb-0"
               >
-                <div className="h-56 md:min-w-[180px] m-2 flex items-center justify-center rounded-2xl bg-white">
+                <div className="h-56 lg:min-w-[180px] m-2 flex items-center justify-center rounded-2xl bg-white">
                   <Image src={icon} alt="Triangles Logo" height={80} />
                 </div>
                 <CardContent className="p-6 flex flex-col">
@@ -363,17 +286,17 @@ export default function Home() {
         {/* FAQ Section */}
         <section
           id="faq"
-          className="mt-20 md:mt-32 mx-8 md:mx-40 flex flex-col md:flex-row justify-between min-h-[240px]"
+          className="mt-20 lg:mt-32 mx-8 lg:mx-40 flex flex-col lg:flex-row justify-between min-h-[240px] lg:gap-12"
         >
-          <div className="mb-8 md:mb-0">
-            <h2 className="text-4xl md:text-6xl font-bold text-teal-950 md:whitespace-nowrap">
+          <div className="mb-8 lg:mb-0">
+            <h2 className="text-4xl lg:text-6xl font-bold text-teal-950 lg:whitespace-nowrap">
               Got questions? <br /> We&apos;ve got answers!
             </h2>
-            <Button variant="ghost" className="mt-6 md:mt-12">
+            <Button variant="ghost" className="mt-6 lg:mt-12">
               More FAQs <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Button>
           </div>
-          <Accordion type="single" collapsible className="w-full md:w-1/2">
+          <Accordion type="single" collapsible className="w-full lg:w-1/2">
             {[
               {
                 question: "What is Triangles?",
@@ -392,7 +315,7 @@ export default function Home() {
               },
             ].map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-lg md:text-xl">
+                <AccordionTrigger className="text-lg lg:text-xl">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent>{faq.answer}</AccordionContent>
@@ -402,8 +325,8 @@ export default function Home() {
         </section>
 
         {/* Newsletter Section */}
-        <section id="newsletter" className="mt-20 md:mt-24 text-center px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-teal-950">
+        <section id="newsletter" className="mt-20 lg:mt-24 text-center px-8">
+          <h2 className="text-2xl lg:text-3xl font-bold text-teal-950">
             Join our newsletter to keep up to date with us!
           </h2>
           <form

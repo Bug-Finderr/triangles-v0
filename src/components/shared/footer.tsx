@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { LinkedInIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
 import logo from "@/public/Logo_tagline.svg";
+import Link from "next/link";
 
 interface LinkItem {
   name: string;
@@ -20,14 +21,14 @@ const LinkList: React.FC<LinkListProps> = ({ title, links }) => (
     <ul className="space-y-2">
       {links.map((link, index) => (
         <li key={index} className="text-gray-700 hover:text-gray-900">
-          <a href={link.href} className="flex items-center">
+          <Link href={link.href} className="flex items-center">
             {link.icon && (
               <span className="text-teal-950 mr-2">
                 {React.cloneElement(link.icon, { size: 16 })}
               </span>
             )}
             {link.name}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
@@ -59,14 +60,14 @@ const footerLinks = {
   company: [
     { name: "About Us", href: "#" },
     { name: "Careers", href: "#" },
-    { name: "FAQs", href: "#" },
+    { name: "FAQs", href: "/faqs?category=General" },
     { name: "Teams", href: "#" },
   ],
 };
 
 const Footer: React.FC = () => {
   return (
-    <footer className="mt-20 lg:mt-32 px-4 md:px-16">
+    <footer className="mt-20 lg:mt-32 px-4 md:px-16 mb-8">
       <div className="px-4 lg:px-24 flex flex-col lg:flex-row justify-between">
         <div className="hidden lg:block mr-16">
           <Image src={logo} alt="Triangles Logo" height={112} />

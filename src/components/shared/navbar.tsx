@@ -20,14 +20,14 @@ const Navbar: React.FC = () => {
           "fixed lg:relative inset-0 w-full h-full lg:w-auto lg:h-auto bg-white lg:bg-transparent z-50 lg:flex items-center transition-transform duration-300 ease-in-out",
           mobileMenuOpen
             ? "translate-x-0"
-            : "-translate-x-full lg:translate-x-0"
+            : "-translate-x-full lg:translate-x-0",
         )}
       >
         <div className="flex flex-col lg:flex-row items-center justify-center h-full lg:h-auto">
           {["Home", "About Us", "Events"].map((item) => (
             <a
               key={item}
-              href={`#${item.toLowerCase().replace(" ", "-")}`}
+              href={`/#${item.toLowerCase().replace(" ", "-")}`}
               className="text-xl lg:text-base font-bold text-teal-950 hover:text-teal-600 transition-colors py-4 lg:py-0 lg:mx-6"
               onClick={() => setMobileMenuOpen(false)}
             >

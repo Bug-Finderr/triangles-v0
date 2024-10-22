@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import BottomStrip from "@/components/shared/bottomStrip";
+import FooterLegal from "@/components/shared/footerLegal";
 
 export const metadata = {
   title: "Triangles - Opportunity Discovery & Networking",
@@ -17,9 +17,9 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="antialiased vsc-initialized">
+      <body className="antialiased vsc-initialized flex flex-col min-h-screen text-teal-950">
         {children}
-        <BottomStrip />
+        <FooterLegal />
       </body>
     </html>
   );

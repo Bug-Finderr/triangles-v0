@@ -1,6 +1,6 @@
 "use client";
 
-import Footer from "@/components/shared/footerRename";
+import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/navbar";
 import {
   Accordion,
@@ -66,7 +66,7 @@ export default function Home() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [bookmarkedEvents, setBookmarkedEvents] = useState<Set<number>>(
-    new Set()
+    new Set(),
   );
 
   const router = useRouter();
@@ -94,7 +94,7 @@ export default function Home() {
         }
       });
     },
-    [events.length]
+    [events.length],
   );
 
   return (
@@ -135,9 +135,7 @@ export default function Home() {
         <section id="events" className="mt-20 lg:mt-32 mx-4 lg:mx-40">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-2 text-teal-950">
-                Featured
-              </h2>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-2">Featured</h2>
               <p>Featured Events</p>
             </div>
             <div className="flex gap-2">
@@ -201,9 +199,9 @@ export default function Home() {
                           }}
                         >
                           {bookmarkedEvents.has(id) ? (
-                            <BookmarkIcon className="h-4 w-4 text-teal-950" />
+                            <BookmarkIcon className="h-4 w-4" />
                           ) : (
-                            <BookmarkOutlineIcon className="h-4 w-4 text-teal-950" />
+                            <BookmarkOutlineIcon className="h-4 w-4" />
                           )}
                         </Button>
                       </CardTitle>
@@ -243,9 +241,7 @@ export default function Home() {
 
         {/* About Us Section */}
         <section id="about-us" className="mt-20 lg:mt-32 text-center px-8">
-          <h2 className="text-3xl lg:text-[40px] font-black mb-4 text-teal-950">
-            About Us
-          </h2>
+          <h2 className="text-3xl lg:text-[40px] font-black mb-4">About Us</h2>
           <p className="text-gray-700 max-w-6xl mx-auto text-base lg:text-lg">
             The journey of discovery never ends. <strong>Triangles</strong> is
             the launchpad for these endless possibilities.{" "}
@@ -257,7 +253,7 @@ export default function Home() {
 
         {/* Founders Section */}
         <section id="founders" className="mt-20 lg:mt-32 text-center px-8">
-          <h2 className="text-3xl lg:text-[40px] font-black mb-4 text-teal-950">
+          <h2 className="text-3xl lg:text-[40px] font-black mb-4">
             Meet The Founders
           </h2>
           <div className="flex flex-col lg:flex-row justify-center lg:gap-40 mt-8 lg:mt-16 items-center">
@@ -289,10 +285,14 @@ export default function Home() {
           className="mt-20 lg:mt-32 mx-8 lg:mx-40 flex flex-col lg:flex-row justify-between min-h-[240px] lg:gap-12"
         >
           <div className="mb-8 lg:mb-0">
-            <h2 className="text-4xl lg:text-6xl font-bold text-teal-950 lg:whitespace-nowrap">
+            <h2 className="text-4xl lg:text-6xl font-bold lg:whitespace-nowrap">
               Got questions? <br /> We&apos;ve got answers!
             </h2>
-            <Button variant="ghost" className="mt-6 lg:mt-12">
+            <Button
+              variant="ghost"
+              className="mt-6 lg:mt-12"
+              onClick={() => router.push("/faqs?category=General")}
+            >
               More FAQs <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -326,7 +326,7 @@ export default function Home() {
 
         {/* Newsletter Section */}
         <section id="newsletter" className="mt-20 lg:mt-24 text-center px-8">
-          <h2 className="text-2xl lg:text-3xl font-bold text-teal-950">
+          <h2 className="text-2xl lg:text-3xl font-bold">
             Join our newsletter to keep up to date with us!
           </h2>
           <form

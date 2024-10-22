@@ -1,9 +1,9 @@
 import React from "react";
 
-const BottomStrip: React.FC = () => {
+const FooterLegal: React.FC = () => {
   return (
-    <footer className="px-4 lg:px-16 md:px-12">
-      <div className="lg:mt-10 border-t border-black py-4 px-4 lg:px-8 text-xs text-gray-500">
+    <footer className="px-4 lg:px-16 md:px-12 mt-auto">
+      <div className="border-t border-black py-4 px-4 lg:px-8 text-xs text-gray-500">
         <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
           <span>
             © {new Date().getFullYear()} Triangles. All rights reserved.
@@ -27,4 +27,4 @@ const BottomStrip: React.FC = () => {
   );
 };
 
-export default BottomStrip;
+export default FooterLegal;

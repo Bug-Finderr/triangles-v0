@@ -291,7 +291,7 @@ export default function Home() {
             <Button
               variant="ghost"
               className="mt-6 lg:mt-12"
-              onClick={() => router.push("/faqs?category=General")}
+              onClick={() => router.push("/faqs")}
             >
               More FAQs <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Button>

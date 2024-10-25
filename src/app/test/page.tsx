@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SectionProps {
   title: string;
@@ -67,10 +67,11 @@ export default function TestPage() {
     setTimeout(() => setIsLoading(false), 2000);
   };
 
-  if (process.env.NODE_ENV !== "development") {
-    router.replace("/");
-    return null;
-  }
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "development") {
+      router.replace("/");
+    }
+  }, [router]);
 
   return (
     <div className="flex h-screen overflow-hidden">

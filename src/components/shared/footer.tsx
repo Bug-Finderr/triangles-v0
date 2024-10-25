@@ -60,7 +60,7 @@ const footerLinks = {
   company: [
     { name: "About Us", href: "#" },
     { name: "Careers", href: "#" },
-    { name: "FAQs", href: "/faqs?category=General" },
+    { name: "FAQs", href: "/faqs" },
     { name: "Teams", href: "#" },
   ],
 };

@@ -1,7 +1,5 @@
 "use client";
 
-import React, { useEffect, useState, useMemo, useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/shared/navbar";
 import {
   Accordion,
@@ -16,10 +14,19 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { Faq, FaqCategory, fetchFaqs } from "@/data/services/faqService";
 import { cn } from "@/lib/utils";
+import { useQueryState } from "nuqs";
+import React, {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 // TODO: Create data layer
 // TODO: Dynamic Metadata
 // TODO: Fix structure, navbar should not be in this file
+// TODO: Segregate into components
 
 type FormData = {
   email: string;
@@ -56,11 +63,21 @@ const EXTRA_CATEGORIES = [
 ];
 
 export default function FaqPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <FaqPageContent />
+    </Suspense>
+  );
+}
+
+function FaqPageContent() {
+  const [category, setCategory] = useQueryState("category", {
+    parse: String,
+    defaultValue: DEFAULT_CATEGORY,
+    history: "push",
+  });
 
   const [faqCategories, setFaqCategories] = useState<FaqCategory[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     email: "",
     subject: "",
@@ -75,14 +92,14 @@ export default function FaqPage() {
   }, [faqCategories]);
 
   const selectedFaqs = useMemo<Faq[]>(() => {
-    if (selectedCategory === "All")
+    if (category === "All")
       return faqCategories.flatMap((cat) => cat.questions);
 
-    return (
-      faqCategories.find((cat) => cat.category === selectedCategory)
-        ?.questions || []
+    const categoryData = faqCategories.find(
+      (cat) => cat.category.toLowerCase() === category.toLowerCase(),
     );
-  }, [faqCategories, selectedCategory]);
+    return categoryData?.questions || [];
+  }, [faqCategories, category]);
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -103,13 +120,10 @@ export default function FaqPage() {
   );
 
   const handleCategoryClick = useCallback(
-    (category: string) => {
-      setSelectedCategory(category);
-      router.push(`?category=${encodeURIComponent(category)}`, {
-        scroll: false,
-      });
+    (selectedCategory: string) => {
+      setCategory(selectedCategory);
     },
-    [router],
+    [setCategory],
   );
 
   useEffect(() => {
@@ -119,27 +133,27 @@ export default function FaqPage() {
         const data = await fetchFaqs();
         setFaqCategories(data);
 
-        const categoryParam = searchParams.get("category");
         const fetchedCategories = data.map((cat) => cat.category);
-        const allCategories = Array.from(
+        const combinedCategories = Array.from(
           new Set(["All", ...fetchedCategories, ...EXTRA_CATEGORIES]),
         );
 
-        const matchedCategory = categoryParam
-          ? allCategories.find(
-              (cat) => cat.toLowerCase() === categoryParam.toLowerCase(),
-            )
-          : DEFAULT_CATEGORY;
+        const matchedCategory = combinedCategories.find(
+          (cat) => cat.toLowerCase() === category.toLowerCase(),
+        );
 
-        setSelectedCategory(matchedCategory || DEFAULT_CATEGORY);
+        if (!matchedCategory) setCategory(DEFAULT_CATEGORY);
+        else if (matchedCategory !== category) setCategory(matchedCategory);
       } catch (error) {
         console.error("Failed to fetch FAQs:", error);
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
-  }, [searchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1024);
@@ -151,7 +165,7 @@ export default function FaqPage() {
   return (
     <div className="flex flex-col flex-grow">
       <Navbar />
-      <SkeletonWrapper loading={loading || selectedCategory === null}>
+      <SkeletonWrapper loading={loading || !category}>
         <main className="flex-grow container mx-auto p-8 flex flex-col">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-teal-950 text-center mb-8">
             Got questions? Look Here.
@@ -159,7 +173,7 @@ export default function FaqPage() {
           <div className="flex flex-col lg:flex-row gap-8 flex-grow">
             <Categories
               categories={allCategories}
-              selected={selectedCategory!}
+              selected={category}
               onSelect={handleCategoryClick}
               available={faqCategories}
               isMobile={isMobile}
@@ -282,7 +296,7 @@ const CategoriesMobile: React.FC<CategoriesProps> = ({
   onSelect,
   available,
 }) => (
-  <div className="overflow-x-auto whitespace-nowrap pb-4">
+  <div className="overflow-x-auto whitespace-nowrap pb-4 scrollbar-hide">
     <div className="inline-flex space-x-2">
       {categories.map((category) => {
         const isAvailable =

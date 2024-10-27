@@ -319,19 +319,13 @@ export default function Home() {
 									index % 2 === 0 ? 'md:flex-row-reverse' : ''
 								} rounded-3xl shadow-2xl mb-8 md:mb-0 md:w-[80%] w-[95%]`}
 							>
-								<div
-									className={`flex items-center w-full justify-center ${
-										index % 2 == 0 ? 'md:justify-end' : 'md:justify-normal'
-									}`}
-								>
-									<Image
-										src={founder.icon}
-										alt="Triangles Logo"
-										height={230}
-										width={210}
-										className="rounded-2xl"
-									/>
-								</div>
+								<Image
+									src={founder.icon}
+									alt="Triangles Logo"
+									height={230}
+									width={210}
+									className="rounded-2xl mx-auto md:mx-0"
+								/>
 								<CardContent className="p-6 flex flex-col">
 									<CardTitle className="text-left text-xl">{founder.name}</CardTitle>
 									<div className="text-left">{founder.role}</div>

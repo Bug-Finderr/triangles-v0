@@ -1,6 +1,6 @@
 export const founder_info = [
 	{
-		name: 'Akshat Agarwal',
+		name: 'Akshat Aggarwal',
 		role: 'CEO',
 		linkedin: 'https://www.linkedin.com/in/akshatentrepreneur/',
 		icon:

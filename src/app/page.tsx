@@ -330,6 +330,18 @@ export default function Home() {
 						<Button type="submit">Subscribe</Button>
 					</form>
 				</section>
+
+				{/* Checkout Widget */}
+				<section id="nasio" className="flex my-5 mt-10">
+					<iframe
+						title="TRIANGLES_2 checkout widget"
+						src="https://nas.io/checkout-widget?communityCode=TRIANGLES_2&communitySlug=%2Ftriangles&buttonText=Join%20as%20member&buttonTextColorHex=%23fff&buttonBgColorHex=%230097b2&widgetTheme=light&backgroundColorHex=%23fff"
+						width="100%"
+						height="320"
+						className="border-none"
+						referrerPolicy="no-referrer"
+					></iframe>
+				</section>
 			</main>
 			<Footer />
 		</div>

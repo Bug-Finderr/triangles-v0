@@ -241,38 +241,11 @@ export default function Home() {
 				</section>
 
 				{/* Founders Section */}
-				<section id="founders" className="mt-20 lg:mt-32 text-center px-8">
-					<h2 className="text-3xl lg:text-[40px] font-black mb-4">
-						Meet The Founders
-					</h2>
-					<div className="flex flex-col lg:flex-row justify-center lg:gap-40 mt-8 lg:mt-16 items-center">
-						{Array.from({ length: 2 }).map((_, index) => (
-							<Card
-								key={index}
-								className="flex flex-col lg:flex-row bg-gradient-to-br from-teal-50 to-teal-100 max-w-xl rounded-3xl shadow-2xl mb-8 lg:mb-0"
-							>
-								<div className="h-56 lg:min-w-[180px] m-2 flex items-center justify-center rounded-2xl bg-white">
-									<Image src={icon} alt="Triangles Logo" height={80} />
-								</div>
-								<CardContent className="p-6 flex flex-col">
-									<CardTitle className="text-left text-xl">Name</CardTitle>
-									<div className="text-left">Co-Founder</div>
-									<CardDescription className="text-left flex flex-col justify-center flex-grow">
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum nam
-										eius nisi labore, optio officiis in accusantium harum modi ad, sed
-										incidunt?
-									</CardDescription>
-								</CardContent>
-							</Card>
-						))}
-					</div>
-				</section>
-				{/* Founders Section */}
 				<section
 					id="founders"
 					className="mt-20 md:mt-32 text-center md:px-8 w-full p-2"
 				>
-					<h2 className="text-3xl md:text-[40px] font-black mb-4 text-teal-950">
+					<h2 className="text-3xl md:text-[40px] font-black mb-4 text-darkBlue">
 						Meet The Founders
 					</h2>
 					<div className="flex flex-col justify-center md:gap-10 mt-8 md:mt-16 items-center">
@@ -291,9 +264,13 @@ export default function Home() {
 									className="rounded-2xl mx-auto md:mx-0"
 								/>
 								<CardContent className="p-6 flex flex-col">
-									<CardTitle className="text-left text-xl">{founder.name}</CardTitle>
-									<div className="text-left">{founder.role}</div>
-									<CardDescription className="text-left flex flex-col justify-center flex-grow">
+									<CardTitle className="text-left text-xl text-darkBlue">
+										{founder.name}
+									</CardTitle>
+									<div className="text-left text-darkBlue font-semibold">
+										{founder.role}
+									</div>
+									<CardDescription className="text-left flex flex-col justify-center flex-grow text-darkBlue font-normal">
 										{founder.desc}
 									</CardDescription>
 								</CardContent>

@@ -1,0 +1,49 @@
+[
+  {
+    "category": "General",
+    "questions": [
+      {
+        "question": "What is Triangles?",
+        "answer": "Triangles is an online platform that connects students with exciting opportunities worldwide including competitions, hackathons, MUNs, events, and more."
+      },
+      {
+        "question": "How does Triangles work?",
+        "answer": "Students can create a profile on Triangles and search for opportunities that match their interests and goals. They can then apply directly to the organizations offering the opportunities through our platform."
+      },
+      {
+        "question": "Is Triangles free to use?",
+        "answer": "Yes, Triangles is a free platform for students. Though the opportunities may have participation fees."
+      }
+    ]
+  },
+  {
+    "category": "Opportunities",
+    "questions": [
+      {
+        "question": "How do I find opportunities on Triangles?",
+        "answer": "You can use the search bar on the homepage to search for opportunities. You can also filter your search results by various criteria."
+      },
+      {
+        "question": "How do I apply for an opportunity?",
+        "answer": "Each opportunity listing on Triangles will include application instructions."
+      },
+      {
+        "question": "What if I don't find any opportunities that interest me?",
+        "answer": "Triangles is constantly adding new opportunities. You can also check back regularly to see if new opportunities have been added that match your interests."
+      },
+      {
+        "question": "Can I contact the organizations offering opportunities directly?",
+        "answer": "Yes, you can contact the organizations directly using the contact information provided in the opportunity listing."
+      }
+    ]
+  },
+  {
+    "category": "Contact",
+    "questions": [
+      {
+        "question": "How can I contact Triangles?",
+        "answer": "If you have any questions or need assistance, or for collaboration-related queries, you can contact Triangles support team or reach out to us at contact@triangles.site."
+      }
+    ]
+  }
+]

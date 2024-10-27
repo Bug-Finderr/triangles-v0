@@ -1,7 +1,7 @@
 export const founder_info = [
 	{
 		name: 'Akshat Agarwal',
-		role: 'Co-Founder & CEO',
+		role: 'CEO',
 		linkedin: 'https://www.linkedin.com/in/akshatentrepreneur/',
 		icon:
 			'https://media.licdn.com/dms/image/v2/D4D03AQHMqLPyLSN7fQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728667445678?e=1735776000&v=beta&t=Srzl0CdI92FUexEYZTSvoVGxvLsQqfJA2yUjruOX6Ow',
@@ -10,7 +10,7 @@ export const founder_info = [
 	},
 	{
 		name: 'Abhinav Gupta',
-		role: 'Co-Founder & CTO',
+		role: 'CTO',
 		linkedin: 'https://www.linkedin.com/in/abhinavgpt/',
 		icon:
 			'https://media.licdn.com/dms/image/v2/D5603AQE8xBNuI4WH_Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1726008585089?e=1735776000&v=beta&t=zvuMfdBpyIiORoEZfrsPqUwqAjdqb2SXhi5qszKEBUo',

@@ -15,6 +15,7 @@ import {
 	CardContent,
 	CardDescription,
 	CardHeader,
+	CardLink,
 	CardTitle,
 } from '@/components/ui/card';
 import {
@@ -270,6 +271,10 @@ export default function Home() {
 									<div className="text-left text-darkBlue font-semibold">
 										{founder.role}
 									</div>
+									<CardLink
+										href={founder.linkedin}
+										className="text-left text-blue-500 font-semibold"
+									/>
 									<CardDescription className="text-left flex flex-col justify-center flex-grow text-darkBlue font-normal">
 										{founder.desc}
 									</CardDescription>

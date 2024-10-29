@@ -32,6 +32,7 @@ import logo from '@/public/Logo.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
+import ms_badge from '@/public//images/ms_badge.png';
 
 interface Event {
 	id: number;
@@ -313,22 +314,35 @@ export default function Home() {
 				</section>
 
 				{/* Newsletter Section */}
-				<section id="newsletter" className="mt-20 lg:mt-24 text-center px-8">
-					<h2 className="text-2xl lg:text-3xl font-bold">
-						Join our newsletter to keep up to date with us!
-					</h2>
-					<form
-						className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-4"
-						aria-label="Newsletter subscription form"
-					>
-						<Input
-							type="email"
-							placeholder="Enter your email"
-							className="w-full sm:w-96 h-10"
-							aria-label="Email input"
-						/>
-						<Button type="submit">Subscribe</Button>
-					</form>
+				<section
+					id="newsletter"
+					className="mt-20 lg:mt-2 flex md:flex-row flex-col justify-around px-10 md:gap-0 gap-4"
+				>
+					<div className="flex items-center justify-center">
+						<Image src={ms_badge} alt="Microsoft for Startups" className="w-[60%]" />
+					</div>
+					<div className="flex flex-col md:w-[40%]">
+						<h2 className="text-2xl lg:text-3xl font-bold text-center">
+							Join our newsletter to keep up to date with us!
+						</h2>
+						<p className="flex justify-start p-5">
+							With Microsoft For Startups as our partner, we are rolling out new
+							features and events everytime. Subscribe to our newsletter to stay
+							updated.
+						</p>
+						<form
+							className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-4"
+							aria-label="Newsletter subscription form"
+						>
+							<Input
+								type="email"
+								placeholder="Enter your email"
+								className="w-full sm:w-96 h-10"
+								aria-label="Email input"
+							/>
+							<Button type="submit">Subscribe</Button>
+						</form>
+					</div>
 				</section>
 			</main>
 			<Footer />

@@ -219,7 +219,7 @@ const SkeletonWrapper: React.FC<SkeletonWrapperProps> = ({
           <Skeleton className="h-8 md:h-10 w-72 md:w-[450px] mx-auto mb-8" />
 
           <div className="flex flex-col lg:flex-row gap-8 flex-grow">
-            <div className="lg:hidden overflow-x-auto whitespace-nowrap pb-2">
+            <div className="lg:hidden overflow-x-auto whitespace-nowrap pb-2 scrollbar-hide">
               <div className="inline-flex space-x-2">
                 {Array.from({ length: 8 }, (_, i) => (
                   <Skeleton key={i} className="h-6 w-24 rounded-full" />

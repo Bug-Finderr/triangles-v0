@@ -332,7 +332,18 @@ export default function Home() {
 				</section>
 
 				{/* Checkout Widget */}
-				<section id="nasio" className="flex my-5 mt-10">
+				<section
+					id="nasio"
+					className="flex my-5 mt-10 w-[80%] items-center justify-center mx-auto flex-col md:flex-row"
+				>
+					<div className="text-center">
+						<p className="text-xl">
+							We will soo bring you the worldly opportunities! But till then it's all
+							about community🔥 Did I mention we're backed by Microsoft for Startups?
+							So trust us when we say this is the place to be. 😎 Join the exclusive
+							community now!
+						</p>
+					</div>
 					<iframe
 						title="TRIANGLES_2 checkout widget"
 						src="https://nas.io/checkout-widget?communityCode=TRIANGLES_2&communitySlug=%2Ftriangles&buttonText=Join%20as%20member&buttonTextColorHex=%23fff&buttonBgColorHex=%230097b2&widgetTheme=light&backgroundColorHex=%23fff"

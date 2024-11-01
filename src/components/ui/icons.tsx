@@ -16,3 +16,5 @@ export {
 } from "react-icons/fa6";
 export { ImSpinner2 as SpinnerIcon } from "react-icons/im";
 export { MdOutlinePeople as PeopleIcon } from "react-icons/md";
+export { BsInfoCircle as InfoIcon } from "react-icons/bs";
+export { GoShieldCheck as ShieldCheckIcon } from "react-icons/go";

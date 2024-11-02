@@ -35,6 +35,10 @@ import logo from '@/public/Logo.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
+import EventsIcon from '@/public/images/events/events.png';
+import HackathonIcon from '@/public/images/events/hackathons.png';
+import ComingSoonIcon from '@/public/images/events/coming-soon.png';
+import MunIcon from '@/public/images/events/mun.png';
 
 interface Event {
 	id: number;
@@ -115,12 +119,18 @@ export default function Home() {
 					/>
 					<div className="mt-10 p-4 lg:p-10 rounded-xl lg:rounded-[3rem] inline-flex flex-col shadow-2xl">
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-12">
-							{['yellow', 'pink', 'orange', 'blue'].map((color) => (
-								<div
-									key={color}
-									className={`bg-gradient-to-r ${colorClasses[color]} w-full h-40 lg:w-[350px] lg:h-[200px] md:w-[250px] md:h-[150px] rounded-3xl shadow-xl`}
-								/>
-							))}
+							{[EventsIcon, MunIcon, HackathonIcon, ComingSoonIcon].map(
+								(image, index) => (
+									<Image
+										key={index}
+										src={image}
+										alt={`Event image ${index + 1}`}
+										className={`w-full lg:w-[350px] lg:h-[200px] md:w-[250px] md:h-[150px] rounded-3xl shadow-xl`}
+										width={0}
+										height={0}
+									/>
+								)
+							)}
 						</div>
 						<Button
 							className="mt-10 ml-auto"

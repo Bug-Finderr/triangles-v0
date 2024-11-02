@@ -270,13 +270,17 @@ export default function Home() {
 									/>
 								</div>
 								<CardContent className="p-6 flex flex-col">
-									<CardTitle className="text-left text-xl text-darkBlue">
-										{founder.name}
-									</CardTitle>
-									<div className="text-left text-darkBlue font-semibold">
-										{founder.role}
+									<div className="flex justify-between">
+										<div className="flex flex-col">
+											<CardTitle className="text-left text-xl text-darkBlue">
+												{founder.name}
+											</CardTitle>
+											<div className="text-left text-darkBlue font-semibold">
+												{founder.role}
+											</div>
+										</div>
+										<CardLink href={founder.linkedin} />
 									</div>
-									<CardLink href={founder.linkedin} />
 									<CardDescription className="text-left flex flex-col justify-center flex-grow text-darkBlue font-normal">
 										{founder.desc}
 									</CardDescription>
@@ -385,13 +389,13 @@ export default function Home() {
 					id="nasio"
 					className="flex my-5 mt-10 w-[80%] items-center justify-center mx-auto flex-col md:flex-row"
 				>
-					<div className="text-center">
+					<div className="text-center flex flex-col">
 						<p className="text-xl">
-							We will soo bring you the worldly opportunities! But till then it's all
+							{`We will soo bring you the worldly opportunities! But till then it's all
 							about community🔥 Did I mention we're backed by Microsoft for Startups?
-							So trust us when we say this is the place to be. 😎 Join the exclusive
-							community now!
+							So trust us when we say this is the place to be. 😎`}
 						</p>
+						<p className="text-xl">Join the exclusive community now! 🚀</p>
 					</div>
 					<iframe
 						title="TRIANGLES_2 checkout widget"

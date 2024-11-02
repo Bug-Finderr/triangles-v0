@@ -67,7 +67,7 @@ const footerLinks = {
 
 const Footer: React.FC = () => {
 	return (
-		<footer className="mt-20 lg:mt-32 px-4 md:px-16 mb-8">
+		<footer className="mt-5 lg:mt-10 px-4 md:px-16 mb-8">
 			<div className="px-4 lg:px-24 flex flex-col lg:flex-row justify-between">
 				<div className="hidden lg:block mr-16">
 					<Image src={logo} alt="Triangles Logo" height={112} />

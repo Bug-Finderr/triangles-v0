@@ -25,9 +25,12 @@ import {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 	ClockIcon,
+	InfoIcon,
 	PeopleIcon,
+	ShieldCheckIcon,
 } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
+import ms_badge from '@/public//images/ms_badge.png';
 import icon from '@/public/Icon.svg';
 import logo from '@/public/Logo.svg';
 import Image from 'next/image';
@@ -102,7 +105,7 @@ export default function Home() {
 	return (
 		<div className="min-h-screen flex flex-col">
 			<Navbar />
-			<main className="flex-1 md:mx-12">
+			<main className="flex-1">
 				{/* Hero Section */}
 				<section id="home" className="text-center mt-12 grid justify-center px-8">
 					<Image
@@ -131,7 +134,7 @@ export default function Home() {
 				</section>
 
 				{/* Featured Events */}
-				<section id="events" className="mt-20 lg:mt-32 mx-4 lg:mx-40">
+				<section id="events" className="mt-20 lg:mt-32 px-14 lg:px-40">
 					<div className="flex justify-between items-center">
 						<div>
 							<h2 className="text-3xl lg:text-4xl font-bold mb-2">Featured</h2>
@@ -230,7 +233,7 @@ export default function Home() {
 				</section>
 
 				{/* About Us Section */}
-				<section id="about-us" className="mt-20 lg:mt-32 text-center px-8">
+				<section id="about-us" className="mt-20 lg:mt-32 text-center px-8 md:px-12">
 					<h2 className="text-3xl lg:text-[40px] font-black mb-4">About Us</h2>
 					<p className="text-gray-700 max-w-6xl mx-auto text-base lg:text-lg">
 						The journey of discovery never ends. <strong>Triangles</strong> is the
@@ -329,22 +332,75 @@ export default function Home() {
 				</section>
 
 				{/* Newsletter Section */}
-				<section id="newsletter" className="mt-20 lg:mt-24 text-center px-8">
-					<h2 className="text-2xl lg:text-3xl font-bold">
-						Join our newsletter to keep up to date with us!
-					</h2>
-					<form
-						className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-4"
-						aria-label="Newsletter subscription form"
-					>
-						<Input
-							type="email"
-							placeholder="Enter your email"
-							className="w-full sm:w-96 h-10"
-							aria-label="Email input"
-						/>
-						<Button type="submit">Subscribe</Button>
-					</form>
+				<section id="newsletter" className="mt-20 lg:mt-24 px-6 lg:mx-40">
+					<div className="max-w-7xl mx-auto bg-gradient-to-br from-teal-50/50 to-teal-100/50 rounded-3xl p-6 lg:p-12">
+						<div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+							<div className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-0">
+								<div className="relative w-full max-w-md lg:max-w-lg transition-transform duration-300 hover:scale-105">
+									<Image src={ms_badge} alt="Microsoft for Startups" />
+								</div>
+							</div>
+
+							<div className="flex flex-col justify-center w-full lg:w-1/2 text-center lg:text-left">
+								<h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+									Join our newsletter to keep up to date with us!
+								</h2>
+								<p className="text-sm md:text-base text-gray-600 mb-6 lg:mb-8 max-w-xl">
+									With Microsoft For Startups as our partner, we are rolling out new
+									features and events everytime. Subscribe to our newsletter to stay
+									updated.
+								</p>
+
+								<form
+									className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+									aria-label="Newsletter subscription form"
+								>
+									<div className="flex-grow">
+										<Input
+											type="email"
+											placeholder="Enter your email"
+											aria-label="Email input"
+										/>
+									</div>
+									<Button type="submit">Subscribe</Button>
+								</form>
+
+								<div className="mt-6 flex items-center justify-center lg:justify-start gap-6 text-sm text-gray-500">
+									<div className="flex items-center gap-2">
+										<ShieldCheckIcon className="text-teal-600" size={19} />
+										<span>100% Secure</span>
+									</div>
+									<div className="flex items-center gap-2">
+										<InfoIcon className="text-teal-600" size={18} />
+										<span>No Spam</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				{/* Nasio Widget */}
+				<section
+					id="nasio"
+					className="flex my-5 mt-10 w-[80%] items-center justify-center mx-auto flex-col md:flex-row"
+				>
+					<div className="text-center">
+						<p className="text-xl">
+							We will soo bring you the worldly opportunities! But till then it's all
+							about community🔥 Did I mention we're backed by Microsoft for Startups?
+							So trust us when we say this is the place to be. 😎 Join the exclusive
+							community now!
+						</p>
+					</div>
+					<iframe
+						title="TRIANGLES_2 checkout widget"
+						src="https://nas.io/checkout-widget?communityCode=TRIANGLES_2&communitySlug=%2Ftriangles&buttonText=Join%20as%20member&buttonTextColorHex=%23fff&buttonBgColorHex=%230097b2&widgetTheme=light&backgroundColorHex=%23fff"
+						width="100%"
+						height="320"
+						className="border-none"
+						referrerPolicy="no-referrer"
+					></iframe>
 				</section>
 			</main>
 			<Footer />

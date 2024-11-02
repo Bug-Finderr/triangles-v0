@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
+import LinkedinIcon from '@/public/images/linkedin-logo.svg';
+import Image from 'next/image';
 
 const Card = React.forwardRef<
 	HTMLDivElement,
@@ -79,9 +81,15 @@ CardFooter.displayName = 'CardFooter';
 const CardLink = React.forwardRef<
 	HTMLAnchorElement,
 	React.AnchorHTMLAttributes<HTMLAnchorElement>
->(({ className, ...props }, ref) => (
-	<a ref={ref} className={cn('hover:underline', className)} {...props}>
-		Linkedin
+>(({ className, ...props }) => (
+	<a href={props.href} className={className}>
+		<Image
+			src={LinkedinIcon}
+			alt="LinkedIn Logo"
+			width={80}
+			height={0}
+			className="relative right-2.5 -mt-2 -mb-2"
+		/>
 	</a>
 ));
 CardLink.displayName = 'CardLink';

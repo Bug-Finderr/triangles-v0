@@ -257,13 +257,15 @@ export default function Home() {
 									index % 2 === 0 ? 'md:flex-row-reverse' : ''
 								} rounded-3xl shadow-2xl mb-8 md:mb-0 md:w-[80%] w-[95%]`}
 							>
-								<Image
-									src={founder.icon}
-									alt="Triangles Logo"
-									height={230}
-									width={210}
-									className="rounded-2xl mx-auto md:mx-0"
-								/>
+								<div className="flex items-center align-middle justify-center md:w-2/5 w-full">
+									<Image
+										src={founder.icon}
+										alt="Founder Icon"
+										height={200}
+										width={180}
+										className="rounded-2xl mx-auto md:mx-0 max-h-[250px] md:w-full md:h-full min-w-[190px] h-fit w-fit"
+									/>
+								</div>
 								<CardContent className="p-6 flex flex-col">
 									<CardTitle className="text-left text-xl text-darkBlue">
 										{founder.name}
@@ -271,10 +273,7 @@ export default function Home() {
 									<div className="text-left text-darkBlue font-semibold">
 										{founder.role}
 									</div>
-									<CardLink
-										href={founder.linkedin}
-										className="text-left text-blue-500 font-semibold"
-									/>
+									<CardLink href={founder.linkedin} />
 									<CardDescription className="text-left flex flex-col justify-center flex-grow text-darkBlue font-normal">
 										{founder.desc}
 									</CardDescription>

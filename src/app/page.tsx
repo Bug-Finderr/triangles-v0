@@ -257,7 +257,7 @@ export default function Home() {
 									index % 2 === 0 ? 'md:flex-row-reverse' : ''
 								} rounded-3xl shadow-2xl mb-8 md:mb-0 md:w-[80%] w-[95%]`}
 							>
-								<div className="flex items-center align-middle justify-center md:w-2/5 w-full">
+								<div className="flex items-center align-middle justify-center md:w-2/5 w-full p-5 md:p-0">
 									<Image
 										src={founder.icon}
 										alt="Founder Icon"

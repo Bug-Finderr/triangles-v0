@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { BarsIcon, XIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
-import icon from "@/public/Icon.svg";
+import icon from "@/public/icon-rename.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
           "fixed lg:relative inset-0 w-full h-full lg:w-auto lg:h-auto bg-white lg:bg-transparent z-50 lg:flex items-center transition-transform duration-300 ease-in-out",
           mobileMenuOpen
             ? "translate-x-0"
-            : "-translate-x-full lg:translate-x-0",
+            : "-translate-x-full lg:translate-x-0"
         )}
       >
         <div className="flex flex-col lg:flex-row items-center justify-center h-full lg:h-auto">

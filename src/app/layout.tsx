@@ -1,5 +1,4 @@
 import "@/app/globals.css";
-import FooterLegal from "@/components/shared/footerLegal";
 import { NuqsAdapter } from "nuqs/adapters/next";
 
 export const metadata = {
@@ -20,7 +19,6 @@ export default function RootLayout({
       </head>
       <body className="antialiased vsc-initialized flex flex-col min-h-screen text-teal-950">
         <NuqsAdapter>{children}</NuqsAdapter>
-        <FooterLegal />
       </body>
     </html>
   );

@@ -11,36 +11,39 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardLink,
-	CardTitle,
-} from '@/components/ui/card';
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardLink,
+  CardTitle,
+} from "@/components/ui/card";
 import {
-	ArrowRightIcon,
-	BookmarkIcon,
-	BookmarkOutlineIcon,
-	ChevronLeftIcon,
-	ChevronRightIcon,
-	ClockIcon,
-	InfoIcon,
-	PeopleIcon,
-	ShieldCheckIcon,
-} from '@/components/ui/icons';
-import { Input } from '@/components/ui/input';
-import ms_badge from '@/public//images/ms_badge.png';
-import icon from '@/public/Icon.svg';
-import logo from '@/public/Logo.svg';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useCallback, useState } from 'react';
-import { founder_info } from '@/constants/index';
+  ArrowRightIcon,
+  BookmarkIcon,
+  BookmarkOutlineIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ClockIcon,
+  InfoIcon,
+  PeopleIcon,
+  ShieldCheckIcon,
+} from "@/components/ui/icons";
+import { Input } from "@/components/ui/input";
+import ms_badge from "@/public//images/ms_badge.png";
+import icon from "@/public/icon.svg";
+import logo from "@/public/logo.svg";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
+import { founder_info } from "@/constants/founders";
 import EventsImage from "@/public/images/events/events.svg";
 import HackathonImage from "@/public/images/events/hackathons.svg";
 import ComingSoonImage from "@/public/images/events/coming-soon.svg";
 import MunImage from "@/public/images/events/mun.svg";
+import Link from "next/link";
+import LinkedinLogo from "@/public/images/linkedin-logo.svg";
+import { cn } from "@/lib/utils";
 
 interface Event {
   id: number;
@@ -144,7 +147,7 @@ export default function Home() {
         </section>
 
         {/* Featured Events */}
-        <section id="events" className="mt-20 lg:mt-32 px-14 lg:px-40">
+        <section id="events" className="mt-24 lg:mt-32 px-14 lg:px-40">
           <div className="flex justify-between items-center">
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold mb-2">Featured</h2>
@@ -254,7 +257,7 @@ export default function Home() {
         {/* About Us Section */}
         <section
           id="about-us"
-          className="mt-20 lg:mt-32 text-center px-8 md:px-12"
+          className="mt-24 lg:mt-32 text-center px-8 md:px-12"
         >
           <h2 className="text-3xl lg:text-[40px] font-black mb-4">About Us</h2>
           <p className="text-gray-700 max-w-6xl mx-auto text-base lg:text-lg">
@@ -265,56 +268,80 @@ export default function Home() {
             your learning journey is just the beginning.
           </p>
         </section>
-				{/* Founders Section */}
-				<section
-					id="founders"
-					className="mt-20 md:mt-32 text-center md:px-8 w-full p-2"
-				>
-					<h2 className="text-3xl md:text-[40px] font-black mb-4 text-darkBlue">
-						Meet The Founders
-					</h2>
-					<div className="flex flex-col justify-center md:gap-10 mt-8 md:mt-16 items-center">
-						{founder_info.map((founder, index) => (
-							<Card
-								key={index}
-								className={`flex flex-col md:flex-row ${
-									index % 2 === 0 ? 'md:flex-row-reverse' : ''
-								} rounded-3xl shadow-2xl mb-8 md:mb-0 md:w-[80%] w-[95%]`}
-							>
-								<div className="flex items-center align-middle justify-center md:w-2/5 w-full p-5 md:p-0">
-									<Image
-										src={founder.icon}
-										alt="Founder Icon"
-										height={200}
-										width={180}
-										className="rounded-2xl mx-auto md:mx-0 max-h-[250px] md:w-full md:h-full min-w-[190px] h-fit w-fit"
-									/>
-								</div>
-								<CardContent className="p-6 flex flex-col">
-									<div className="flex justify-between">
-										<div className="flex flex-col">
-											<CardTitle className="text-left text-xl text-darkBlue">
-												{founder.name}
-											</CardTitle>
-											<div className="text-left text-darkBlue font-semibold">
-												{founder.role}
-											</div>
-										</div>
-										<CardLink href={founder.linkedin} />
-									</div>
-									<CardDescription className="text-left flex flex-col justify-center flex-grow text-darkBlue font-normal">
-										{founder.desc}
-									</CardDescription>
-								</CardContent>
-							</Card>
-						))}
-					</div>
-				</section>
+
+        {/* Founders Section */}
+        <section
+          id="founders"
+          className="mt-24 md:mt-32 text-center px-8 w-full"
+        >
+          <h2 className="text-3xl md:text-[40px] font-black mb-4 text-darkBlue">
+            Meet The Founders
+          </h2>
+          <div className="flex flex-col justify-center gap-8 mt-8 md:mt-16 items-center">
+            {founder_info.map((founder, index) => (
+              <Card
+                key={index}
+                className={cn(
+                  "flex flex-col md:flex-row rounded-3xl shadow-2xl w-full max-w-5xl",
+                  { "md:flex-row-reverse": index % 2 === 0 }
+                )}
+              >
+                <div
+                  className={cn(
+                    "flex items-center justify-center p-6 pb-0 md:pb-6",
+                    index % 2 === 0 ? "md:pl-0" : "md:pr-0"
+                  )}
+                >
+                  <div className="relative w-[280px] h-[280px]">
+                    <Image
+                      src={founder.icon}
+                      alt={founder.name}
+                      fill
+                      className="rounded-2xl object-cover"
+                      sizes="(max-width: 768px) 100vw, 280px"
+                    />
+                  </div>
+                </div>
+                <CardContent className="flex flex-col flex-1 p-6">
+                  <div className="flex justify-between items-start">
+                    <div className="flex flex-col">
+                      <CardTitle className="text-left text-2xl text-darkBlue">
+                        {founder.name}
+                      </CardTitle>
+                      <div className="text-left text-darkBlue font-semibold mt-1">
+                        {founder.role}
+                      </div>
+                    </div>
+                    <CardLink>
+                      <Link
+                        href={founder.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <div className="w-[100px] h-[40px] relative">
+                          <Image
+                            src={LinkedinLogo}
+                            alt="LinkedIn Logo"
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      </Link>
+                    </CardLink>
+                  </div>
+                  <CardDescription className="text-left mt-4 text-darkBlue font-normal">
+                    {founder.desc}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
         {/* FAQ Section */}
         <section
           id="faq"
-          className="mt-20 lg:mt-32 mx-12 lg:mx-40 flex flex-col lg:flex-row justify-between min-h-[240px] lg:gap-12"
+          className="mt-24 lg:mt-32 mx-12 lg:mx-40 flex flex-col lg:flex-row justify-between min-h-[240px] lg:gap-12"
         >
           <div className="mb-8 lg:mb-0">
             <h2 className="text-4xl lg:text-6xl font-bold lg:whitespace-nowrap">
@@ -359,7 +386,7 @@ export default function Home() {
         {/* Newsletter Section */}
         <section
           id="newsletter"
-          className="mt-20 lg:mt-24 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 max-w-7xl mx-auto p-12"
+          className="mt-24 lg:mt-24 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 max-w-7xl mx-auto px-12"
         >
           <div className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-0">
             <div className="relative w-full max-w-md lg:max-w-lg transition-transform duration-300 hover:scale-105">
@@ -407,9 +434,9 @@ export default function Home() {
         {/* Nasio Widget */}
         <section
           id="nasio"
-          className="mt-10 lg:mt-24 lg:mx-40 flex flex-col lg:flex-row items-center justify-center mx-auto p-12"
+          className="mt-24 lg:mt-24 lg:mx-40 flex flex-col lg:flex-row items-center justify-center mx-auto px-12"
         >
-          <div className="flex flex-col justify-center w-full lg:w-1/2 text-center lg:text-left items-center">
+          <div className="flex flex-col justify-center text-center lg:text-left ">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
               Join our exclusive community!
             </h2>

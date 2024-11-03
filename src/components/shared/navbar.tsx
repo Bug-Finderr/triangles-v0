@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { BarsIcon, XIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
-import icon from "@/public/icon-rename.svg";
+import icon from "@/public/icon.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";

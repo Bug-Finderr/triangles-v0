@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { LinkedInIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
-import logo from "@/public/logo-tagline-rename.svg";
+import logo from "@/public/logo-tagline.svg";
 import Link from "next/link";
 
 interface LinkItem {
@@ -67,7 +67,7 @@ const footerLinks = {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="mt-10 lg:mt-20 px-4 md:px-16 mb-8">
+    <footer className="mt-24 px-4 md:px-16 mb-8">
       <div className="px-4 lg:px-24 flex flex-col lg:flex-row justify-between">
         <div className="hidden lg:block mr-16">
           <Image src={logo} alt="Triangles Logo" height={112} />

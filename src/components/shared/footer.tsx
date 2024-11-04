@@ -3,6 +3,7 @@ import Image from "next/image";
 import { LinkedInIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
 import logo from "@/public/logo-tagline.svg";
 import Link from "next/link";
+import FooterLegal from "./footerLegal";
 
 interface LinkItem {
   name: string;
@@ -67,8 +68,8 @@ const footerLinks = {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="mt-24 px-4 md:px-16 mb-8">
-      <div className="px-4 lg:px-24 flex flex-col lg:flex-row justify-between">
+    <footer className="mt-24 px-4 md:px-16">
+      <div className="px-4 lg:px-24 flex flex-col lg:flex-row justify-between mb-8">
         <div className="hidden lg:block mr-16">
           <Image src={logo} alt="Triangles Logo" height={112} />
         </div>
@@ -79,6 +80,7 @@ const Footer: React.FC = () => {
           <LinkList title="Company" links={footerLinks.company} />
         </div>
       </div>
+      <FooterLegal />
     </footer>
   );
 };

@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface SectionProps {
   title: string;
@@ -67,18 +67,17 @@ export default function TestPage() {
     setTimeout(() => setIsLoading(false), 2000);
   };
 
-  useEffect(() => {
-    if (process.env.NODE_ENV !== "development") {
-      router.replace("/");
-    }
-  }, [router]);
+  if (process.env.NODE_ENV !== "development") {
+    router.replace("/");
+    return null;
+  }
 
   return (
     <div className="flex h-screen overflow-hidden">
       <aside
         className={cn(
           "fixed inset-y-0 left-0 z-20 w-64 bg-gray-800 text-white overflow-y-auto transition-transform md:translate-x-0",
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full",
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         <div className="p-8">

@@ -1,5 +1,6 @@
 "use client";
 
+import FeaturedEvents from "@/components/featured-events";
 import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/navbar";
 import {
@@ -8,105 +9,35 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardHeader,
   CardLink,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import {
   ArrowRightIcon,
-  BookmarkIcon,
-  BookmarkOutlineIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ClockIcon,
   InfoIcon,
-  PeopleIcon,
-  ShieldCheckIcon,
+  ShieldCheckIcon
 } from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
-import ms_badge from "@/public//images/ms_badge.png";
-import icon from "@/public/icon.svg";
-import logo from "@/public/logo.svg";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
 import { founder_info } from "@/constants/founders";
+import { cn } from "@/lib/utils";
+import ms_badge from "@/public//images/ms_badge.png";
+import ComingSoonImage from "@/public/images/events/coming-soon.svg";
 import EventsImage from "@/public/images/events/events.svg";
 import HackathonImage from "@/public/images/events/hackathons.svg";
-import ComingSoonImage from "@/public/images/events/coming-soon.svg";
 import MunImage from "@/public/images/events/mun.svg";
-import Link from "next/link";
 import LinkedinLogo from "@/public/images/linkedin-logo.svg";
-import { cn } from "@/lib/utils";
-
-interface Event {
-  id: number;
-  title: string;
-  image: string | null;
-  description: string;
-  tags: [string, string];
-}
-
-const generateEvents = (count: number): Event[] =>
-  Array.from({ length: count }, (_, index) => ({
-    id: index + 1,
-    title: `Event ${index + 1}`,
-    image: null,
-    description: "",
-    tags: [
-      index % 2 === 0 ? "online" : "offline",
-      index % 3 === 0 ? "paid" : "free",
-    ],
-  }));
-
-// const colorClasses: { [key: string]: string } = {
-// 	yellow: 'from-yellow-400 to-yellow-500',
-// 	pink: 'from-pink-400 to-pink-500',
-// 	orange: 'from-orange-400 to-orange-500',
-// 	blue: 'from-blue-400 to-blue-500',
-// };
+import logo from "@/public/logo.svg";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const events = generateEvents(10);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [bookmarkedEvents, setBookmarkedEvents] = useState<Set<number>>(
-    new Set()
-  );
-
   const router = useRouter();
-
-  const toggleBookmark = useCallback((id: number) => {
-    setBookmarkedEvents((prev) => {
-      const updated = new Set(prev);
-      if (updated.has(id)) {
-        updated.delete(id);
-      } else {
-        updated.add(id);
-      }
-      return updated;
-    });
-  }, []);
-
-  const scrollEvents = useCallback(
-    (direction: "left" | "right") => {
-      const visibleCards = window.innerWidth >= 768 ? 5 : 1;
-      setCurrentIndex((prevIndex) => {
-        if (direction === "left") {
-          return prevIndex === 0 ? events.length - visibleCards : prevIndex - 1;
-        } else {
-          return prevIndex >= events.length - visibleCards ? 0 : prevIndex + 1;
-        }
-      });
-    },
-    [events.length]
-  );
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -115,7 +46,7 @@ export default function Home() {
         {/* Hero Section */}
         <section
           id="home"
-          className="text-center mt-12 grid justify-center px-8"
+          className="text-center pt-14 grid justify-center px-8"
         >
           <Image
             src={logo}
@@ -147,117 +78,14 @@ export default function Home() {
         </section>
 
         {/* Featured Events */}
-        <section id="events" className="mt-24 lg:mt-32 px-14 lg:px-40">
-          <div className="flex justify-between items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-2">Featured</h2>
-              <p>Featured Events</p>
-            </div>
-            <div className="flex gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => scrollEvents("left")}
-              >
-                <ChevronLeftIcon className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => scrollEvents("right")}
-              >
-                <ChevronRightIcon className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-
-          {/* TODO: Do something with this way of carousel */}
-          <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-in-out py-4"
-              style={{ transform: `translateX(-${currentIndex * 316}px)` }}
-            >
-              {events.map(({ id, image, title, description, tags }) => (
-                <Card
-                  key={id}
-                  className="min-w-[300px] mx-2 rounded-3xl"
-                  onClick={() => router.push("/coming-soon")}
-                >
-                  <div className="h-40 m-2 flex items-center justify-center bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl mb-0">
-                    {image ? (
-                      <Image
-                        src={image}
-                        alt={title}
-                        width={300}
-                        height={150}
-                        className="object-cover w-full h-full"
-                      />
-                    ) : (
-                      <Image
-                        src={icon}
-                        alt="Icon Placeholder"
-                        width={80}
-                        height={80}
-                      />
-                    )}
-                  </div>
-                  <CardContent className="p-4">
-                    <CardHeader className="p-0 mb-2">
-                      <CardTitle className="flex justify-between items-center text-xl">
-                        {title}
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleBookmark(id);
-                          }}
-                        >
-                          {bookmarkedEvents.has(id) ? (
-                            <BookmarkIcon className="h-4 w-4" />
-                          ) : (
-                            <BookmarkOutlineIcon className="h-4 w-4" />
-                          )}
-                        </Button>
-                      </CardTitle>
-                    </CardHeader>
-                    <div className="flex space-x-2 mb-4">
-                      {tags.map((tag, index) => (
-                        <Badge key={index} variant="outline">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="text-sm text-muted-foreground">
-                        {description || (
-                          <span className="grid gap-1">
-                            <span className="flex items-center gap-1">
-                              <PeopleIcon className="h-4 w-4" />
-                              100 registered
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <ClockIcon className="h-4 w-4" />
-                              10 days left
-                            </span>
-                          </span>
-                        )}
-                      </div>
-                      <Button size="icon" className="rounded-full">
-                        <ArrowRightIcon className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+        <section id="events" className="pt-24 lg:pt-32 px-8 md:px-12 lg:px-20 xl:px-40">
+          <FeaturedEvents />
         </section>
 
         {/* About Us Section */}
         <section
           id="about-us"
-          className="mt-24 lg:mt-32 text-center px-8 md:px-12"
+          className="pt-24 lg:pt-32 text-center px-8 md:px-12"
         >
           <h2 className="text-3xl lg:text-[40px] font-black mb-4">About Us</h2>
           <p className="text-gray-700 max-w-6xl mx-auto text-base lg:text-lg">
@@ -272,7 +100,7 @@ export default function Home() {
         {/* Founders Section */}
         <section
           id="founders"
-          className="mt-24 md:mt-32 text-center px-8 w-full"
+          className="pt-24 md:pt-32 text-center px-8 w-full"
         >
           <h2 className="text-3xl md:text-[40px] font-black mb-4 text-darkBlue">
             Meet The Founders
@@ -341,7 +169,7 @@ export default function Home() {
         {/* FAQ Section */}
         <section
           id="faq"
-          className="mt-24 lg:mt-32 mx-12 lg:mx-40 flex flex-col lg:flex-row justify-between min-h-[240px] lg:gap-12"
+          className="pt-24 lg:pt-32 mx-12 lg:mx-40 flex flex-col lg:flex-row justify-between min-h-[240px] lg:gap-12"
         >
           <div className="mb-8 lg:mb-0">
             <h2 className="text-4xl lg:text-6xl font-bold lg:whitespace-nowrap">
@@ -386,7 +214,7 @@ export default function Home() {
         {/* Newsletter Section */}
         <section
           id="newsletter"
-          className="mt-24 lg:mt-24 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 max-w-7xl mx-auto px-12"
+          className="pt-24 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 max-w-7xl mx-auto px-12"
         >
           <div className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-0">
             <div className="relative w-full max-w-md lg:max-w-lg transition-transform duration-300 hover:scale-105">
@@ -434,7 +262,7 @@ export default function Home() {
         {/* Nasio Widget */}
         <section
           id="nasio"
-          className="mt-24 lg:mt-24 lg:mx-40 flex flex-col lg:flex-row items-center justify-center mx-auto px-12"
+          className="pt-24 lg:mx-40 flex flex-col lg:flex-row items-center justify-center mx-auto px-12"
         >
           <div className="flex flex-col justify-center text-center lg:text-left ">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">

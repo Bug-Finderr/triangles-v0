@@ -6,30 +6,32 @@ import { cn } from "@/lib/utils";
 import icon from "@/public/icon.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 
-const Navbar: React.FC = () => {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
 
   return (
-    <header className="py-3 px-4 lg:px-24 flex justify-between items-center z-50 sticky top-0 bg-white shadow-sm md:px-8">
+    <header className="sticky top-0 z-50 flex items-center justify-between bg-white px-4 py-3 shadow-sm md:px-8 lg:px-24">
       <Image src={icon} alt="Triangles Icon" height={28} />
       <nav
         className={cn(
-          "fixed lg:relative inset-0 w-full h-full lg:w-auto lg:h-auto bg-white lg:bg-transparent z-50 lg:flex items-center transition-transform duration-300 ease-in-out",
+          "fixed inset-0 z-50 h-full w-full items-center bg-white transition-transform duration-300 ease-in-out lg:relative lg:flex lg:h-auto lg:w-auto lg:bg-transparent",
           mobileMenuOpen
             ? "translate-x-0"
-            : "-translate-x-full lg:translate-x-0"
+            : "-translate-x-full lg:translate-x-0",
         )}
       >
-        <div className="flex flex-col lg:flex-row items-center justify-center h-full lg:h-auto">
+        <div className="flex h-full flex-col items-center justify-center lg:h-auto lg:flex-row">
           {["Home", "About Us", "Events"].map((item) => (
             <a
               key={item}
               href={`/#${item.toLowerCase().replace(" ", "-")}`}
-              className="text-xl lg:text-base font-bold text-teal-950 hover:text-teal-600 transition-colors py-4 lg:py-0 lg:mx-6"
-              onClick={() => setMobileMenuOpen(false)}
+              className="py-4 text-xl font-bold transition-colors hover:text-teal-600 lg:mx-6 lg:py-0 lg:text-base"
+              onClick={() => {
+                setMobileMenuOpen(false);
+              }}
             >
               {item}
             </a>
@@ -37,7 +39,9 @@ const Navbar: React.FC = () => {
           <Button
             size="lg"
             className="mt-6 lg:hidden"
-            onClick={() => router.push("/coming-soon")}
+            onClick={() => {
+              router.push("/coming-soon");
+            }}
           >
             Login
           </Button>
@@ -45,17 +49,21 @@ const Navbar: React.FC = () => {
             variant="outline"
             size="lg"
             className="mt-6 lg:hidden"
-            onClick={() => router.push("/coming-soon")}
+            onClick={() => {
+              router.push("/coming-soon");
+            }}
           >
             Host
           </Button>
         </div>
       </nav>
-      <div className="flex gap-2 lg:gap-4 items-center">
+      <div className="flex items-center gap-2 lg:gap-4">
         <Button
           size="sm"
           className="hidden lg:inline-flex"
-          onClick={() => router.push("/coming-soon")}
+          onClick={() => {
+            router.push("/coming-soon");
+          }}
         >
           Login
         </Button>
@@ -63,15 +71,19 @@ const Navbar: React.FC = () => {
           variant="outline"
           size="sm"
           className="hidden lg:inline-flex"
-          onClick={() => router.push("/coming-soon")}
+          onClick={() => {
+            router.push("/coming-soon");
+          }}
         >
           Host
         </Button>
         <Button
           variant="ghost"
           size="sm"
-          className="lg:hidden z-50"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="z-50 lg:hidden"
+          onClick={() => {
+            setMobileMenuOpen(!mobileMenuOpen);
+          }}
         >
           {mobileMenuOpen ? (
             <XIcon className="h-6 w-6" />
@@ -82,6 +94,4 @@ const Navbar: React.FC = () => {
       </div>
     </header>
   );
-};
-
-export default Navbar;
+}

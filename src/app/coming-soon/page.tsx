@@ -1,11 +1,7 @@
-import React from "react";
-
-const ComingSoon = () => {
+export default function ComingSoon() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex min-h-screen items-center justify-center">
       <h1 className="text-4xl font-bold">Coming Soon</h1>
     </div>
   );
-};
-
-export default ComingSoon;
+}

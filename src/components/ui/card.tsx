@@ -1,6 +1,5 @@
-import * as React from "react";
-
 import { cn } from "@/lib/utils";
+import * as React from "react";
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -10,7 +9,7 @@ const Card = React.forwardRef<
     ref={ref}
     className={cn(
       "rounded-lg border bg-card text-card-foreground shadow-lg",
-      className
+      className,
     )}
     {...props}
   />
@@ -37,7 +36,7 @@ const CardTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "text-2xl font-semibold leading-none tracking-tight",
-      className
+      className,
     )}
     {...props}
   />
@@ -88,10 +87,10 @@ CardLink.displayName = "CardLink";
 
 export {
   Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
   CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
   CardLink,
+  CardTitle,
 };

@@ -15,24 +15,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Faq, FaqCategory, fetchFaqs } from "@/data/services/faqService";
 import { cn } from "@/lib/utils";
 import { useQueryState } from "nuqs";
-import React, {
-  Suspense,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 
 // TODO: Create data layer
 // TODO: Dynamic Metadata
 // TODO: Fix structure, navbar should not be in this file
 // TODO: Segregate into components
 
-type FormData = {
+interface FormData {
   email: string;
   subject: string;
   message: string;
-};
+}
 
 interface SkeletonWrapperProps {
   loading: boolean;
@@ -98,7 +92,7 @@ function FaqPageContent() {
     const categoryData = faqCategories.find(
       (cat) => cat.category.toLowerCase() === category.toLowerCase(),
     );
-    return categoryData?.questions || [];
+    return categoryData?.questions ?? [];
   }, [faqCategories, category]);
 
   const handleInputChange = useCallback(
@@ -156,10 +150,14 @@ function FaqPageContent() {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (

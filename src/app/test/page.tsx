@@ -30,7 +30,7 @@ interface SidebarSectionProps {
 }
 
 const Section = ({ title, children, id }: SectionProps) => (
-  <section id={id} className="space-y-4 p-4 bg-white rounded-md shadow-md">
+  <section id={id} className="space-y-4 rounded-md bg-white p-4 shadow-md">
     <h2 className="text-lg font-semibold">{title}</h2>
     <div className="flex flex-wrap gap-4">{children}</div>
   </section>
@@ -39,10 +39,10 @@ const Section = ({ title, children, id }: SectionProps) => (
 const SidebarSection = ({ title, links }: SidebarSectionProps) => (
   <Accordion type="single" collapsible>
     <AccordionItem value={title} className="border-none">
-      <AccordionTrigger className="flex justify-between w-full cursor-pointer text-white">
+      <AccordionTrigger className="flex w-full cursor-pointer justify-between text-white">
         <h3 className="text-lg font-semibold">{title}</h3>
       </AccordionTrigger>
-      <AccordionContent className="space-y-2 ml-4 mt-2">
+      <AccordionContent className="ml-4 mt-2 space-y-2">
         {links.map(({ id, label }) => (
           <Button key={id} asChild className="block text-white" variant="link">
             <a href={`#${id}`}>{label}</a>
@@ -58,13 +58,20 @@ export default function TestPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const router = useRouter();
 
-  const buttonVariants: Array<
-    "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"
-  > = ["default", "destructive", "outline", "secondary", "ghost", "link"];
+  const buttonVariants: (
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link"
+  )[] = ["default", "destructive", "outline", "secondary", "ghost", "link"];
 
   const handleClick = () => {
     setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 2000);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   };
 
   if (process.env.NODE_ENV !== "development") {
@@ -76,12 +83,12 @@ export default function TestPage() {
     <div className="flex h-screen overflow-hidden">
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-20 w-64 bg-gray-800 text-white overflow-y-auto transition-transform md:translate-x-0",
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          "fixed inset-y-0 left-0 z-20 w-64 overflow-y-auto bg-gray-800 text-white transition-transform md:translate-x-0",
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="p-8">
-          <h2 className="text-2xl font-bold mb-4">UI Components</h2>
+          <h2 className="mb-4 text-2xl font-bold">UI Components</h2>
           <SidebarSection
             title="Buttons"
             links={[
@@ -103,18 +110,20 @@ export default function TestPage() {
       </aside>
 
       <div className="flex-1 md:ml-64">
-        <header className="sticky top-0 z-10 bg-white shadow-md p-4 md:hidden">
+        <header className="sticky top-0 z-10 bg-white p-4 shadow-md md:hidden">
           <Button
-            className="p-2 bg-gray-800 text-white"
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="bg-gray-800 p-2 text-white"
+            onClick={() => {
+              setIsSidebarOpen(!isSidebarOpen);
+            }}
           >
             <BarsIcon />
           </Button>
         </header>
 
-        <main className="overflow-y-auto h-[calc(100vh-64px)] md:h-screen bg-gray-100">
-          <div className="p-8 space-y-12">
-            <h1 className="text-3xl font-bold mb-8">
+        <main className="h-[calc(100vh-64px)] overflow-y-auto bg-gray-100 md:h-screen">
+          <div className="space-y-12 p-8">
+            <h1 className="mb-8 text-3xl font-bold">
               UI Components Playground
             </h1>
 
@@ -213,7 +222,9 @@ export default function TestPage() {
       {isSidebarOpen && (
         <div
           className="fixed inset-0 z-10 bg-black opacity-50 md:hidden"
-          onClick={() => setIsSidebarOpen(false)}
+          onClick={() => {
+            setIsSidebarOpen(false);
+          }}
         />
       )}
     </div>

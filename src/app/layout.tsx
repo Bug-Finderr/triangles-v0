@@ -17,7 +17,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="antialiased vsc-initialized flex flex-col min-h-screen text-teal-950">
+      <body className="vsc-initialized flex min-h-screen flex-col text-teal-950 antialiased">
         <NuqsAdapter>{children}</NuqsAdapter>
       </body>
     </html>

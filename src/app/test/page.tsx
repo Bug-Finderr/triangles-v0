@@ -9,6 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
+  ArrowLeftIcon,
   ArrowRightIcon,
   BarsIcon,
   CheckIcon,
@@ -97,14 +98,12 @@ export default function TestPage() {
               { id: "states", label: "States" },
               { id: "loading", label: "Loading" },
               { id: "icons", label: "With Icon" },
+              { id: "animations", label: "Animations" },
             ]}
           />
           <SidebarSection
             title="Other Components"
-            links={[
-              { id: "accordion", label: "Accordion" },
-              { id: "badge", label: "Badge" },
-            ]}
+            links={[{ id: "badge", label: "Badge" }]}
           />
         </div>
       </aside>
@@ -168,37 +167,42 @@ export default function TestPage() {
               </Button>
             </Section>
 
-            <Section title="Accordion" id="accordion">
-              <Accordion type="single" collapsible>
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>What is Radix UI?</AccordionTrigger>
-                  <AccordionContent>
-                    Radix UI is an open-source library of unstyled, accessible
-                    components for building design systems and web apps in
-                    React.
-                  </AccordionContent>
-                </AccordionItem>
+            <Section
+              title="Button Animations (on dif variants)"
+              id="animations"
+            >
+              <Button
+                animate="expandIcon"
+                icon={<ArrowRightIcon size={14} />}
+                iconPlacement="right"
+              >
+                Expand Icon
+              </Button>
 
-                <AccordionItem value="item-2">
-                  <AccordionTrigger>How does Accordion work?</AccordionTrigger>
-                  <AccordionContent>
-                    The Accordion component allows you to display content in
-                    collapsible sections. It provides an easy way to manage and
-                    toggle content visibility.
-                  </AccordionContent>
-                </AccordionItem>
+              <Button
+                variant="secondary"
+                animate="expandIcon"
+                icon={<ArrowLeftIcon size={14} />}
+                iconPlacement="left"
+              >
+                Expand Icon
+              </Button>
 
-                <AccordionItem value="item-3">
-                  <AccordionTrigger>
-                    Can I use Radix with Tailwind CSS?
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    Yes! Radix components are unstyled by default, so you can
-                    easily style them with Tailwind CSS or any other styling
-                    approach.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <Button animate="ringHover">Ring Hover</Button>
+
+              <Button variant="ghost" animate="gooeyRight">
+                Gooey Right
+              </Button>
+
+              <Button animate="gooeyLeft">Gooey Left</Button>
+
+              <Button variant="ghost" animate="linkHover1">
+                Link Hover 1
+              </Button>
+
+              <Button variant="secondary" animate="linkHover2">
+                Link Hover 2
+              </Button>
             </Section>
 
             <Section title="Badge Variants" id="badge">

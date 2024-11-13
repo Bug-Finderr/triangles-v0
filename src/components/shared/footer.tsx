@@ -1,4 +1,5 @@
 import { LinkedInIcon, MailIcon, PhoneIcon } from "@/components/ui/icons";
+import { cn } from "@/lib/utils";
 import logo from "@/public/logo-tagline.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,11 +22,15 @@ const LinkList: React.FC<LinkListProps> = ({ title, links }) => (
     <h3 className="mb-4 text-lg font-bold">{title}</h3>
     <ul className="space-y-2">
       {links.map((link, index) => (
-        <li key={index} className="text-gray-700 hover:text-gray-900">
-          <Link href={link.href} className="flex items-center">
-            {link.icon && (
-              <span className="mr-2">{React.cloneElement(link.icon)}</span>
-            )}
+        <li
+          key={index}
+          className="relative w-fit after:absolute after:bottom-[-2px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+        >
+          <Link
+            href={link.href}
+            className="flex items-center text-gray-700 hover:text-cyan-800"
+          >
+            {link.icon && <span className="mr-2">{link.icon}</span>}
             {link.name}
           </Link>
         </li>
@@ -68,11 +73,11 @@ const footerLinks = {
   ],
 };
 
-const Footer: React.FC = () => {
+const Footer: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <footer className="mt-24 px-4 md:px-16">
-      <div className="mb-8 flex flex-col justify-between px-4 lg:flex-row lg:px-24">
-        <div className="mr-16 hidden lg:block">
+    <footer className={cn("mt-24 px-4 md:px-16", className)}>
+      <div className="mb-8 flex flex-col justify-between px-4 lg:flex-row xl:px-24">
+        <div className="mr-16 hidden xl:block">
           <Image src={logo} alt="Triangles Logo" height={112} />
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-20">

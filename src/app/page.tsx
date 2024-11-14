@@ -69,6 +69,9 @@ export default function Home() {
               )}
             </div>
             <Button
+              animate="expandIcon"
+              icon={<ArrowRightIcon size={16} />}
+              iconPlacement="right"
               className="ml-auto mt-10"
               onClick={() => {
                 router.push("/coming-soon");
@@ -79,10 +82,36 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Nasio Widget */}
+        <section
+          id="nasio"
+          className="mx-auto flex flex-col items-center justify-center px-12 pt-24 md:flex-row md:gap-8 md:px-36 lg:mx-40 lg:px-0 lg:pt-32"
+        >
+          <div className="flex flex-col justify-center text-center md:text-left">
+            <h2 className="mb-4 text-2xl font-bold md:text-3xl lg:text-4xl">
+              Join our exclusive community!
+            </h2>
+            <p className="max-w-xl text-sm text-gray-600 md:text-base">
+              We will soon bring you the worldly opportunities! But till then
+              it&apos;s all about community🔥 Did I mention we&apos;re backed by
+              <strong> Microsoft for Startups?</strong>{" "}
+              <br className="hidden xl:block" /> So trust us when we say this is
+              the place to be. 😎
+            </p>
+          </div>
+          <iframe
+            title="TRIANGLES_2 checkout widget"
+            src="https://nas.io/checkout-widget?communityCode=TRIANGLES_2&communitySlug=%2Ftriangles&buttonText=Join%20as%20member&buttonTextColorHex=%23fff&buttonBgColorHex=%230097b2&widgetTheme=light&backgroundColorHex=%23fff"
+            height="300"
+            width="215"
+            referrerPolicy="no-referrer"
+          ></iframe>
+        </section>
+
         {/* Featured Events */}
         <section
           id="events"
-          className="px-8 pt-24 md:px-12 lg:px-20 lg:pt-32 xl:px-40"
+          className="px-8 pt-16 md:px-12 lg:px-20 lg:pt-28 xl:px-40"
         >
           <FeaturedEvents />
         </section>
@@ -90,7 +119,7 @@ export default function Home() {
         {/* About Us Section */}
         <section
           id="about-us"
-          className="px-8 pt-24 text-center md:px-12 lg:pt-32"
+          className="px-14 pt-24 text-center md:px-24 lg:px-20 lg:pt-40 xl:px-40"
         >
           <h2 className="mb-4 text-3xl font-black lg:text-[40px]">About Us</h2>
           <p className="mx-auto max-w-6xl text-base text-gray-700 lg:text-lg">
@@ -105,12 +134,12 @@ export default function Home() {
         {/* Founders Section */}
         <section
           id="founders"
-          className="w-full px-8 pt-24 text-center md:pt-32"
+          className="w-full px-8 pt-24 text-center md:px-12 lg:px-20 lg:pt-40 xl:px-40"
         >
-          <h2 className="mb-4 text-3xl font-black text-darkBlue md:text-[40px]">
+          <h2 className="text-3xl font-black text-darkBlue md:text-[40px]">
             Meet The Founders
           </h2>
-          <div className="mt-8 flex flex-col items-center justify-center gap-8 md:mt-16">
+          <div className="mt-8 flex flex-col items-center justify-center gap-8 md:mt-12">
             {founder_info.map((founder, index) => (
               <Card
                 key={index}
@@ -171,18 +200,69 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Newsletter Section */}
+        <section
+          id="newsletter"
+          className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-12 pt-24 md:px-28 lg:flex-row lg:gap-12 lg:px-12 lg:pt-40"
+        >
+          <div className="flex w-full items-center justify-center p-4 lg:w-1/2 lg:p-0">
+            <div className="relative w-full max-w-md transition-transform duration-300 hover:scale-105 lg:max-w-lg">
+              <Image src={ms_badge} alt="Microsoft for Startups" />
+            </div>
+          </div>
+
+          <div className="flex w-full flex-col justify-center text-center lg:w-1/2 lg:text-left">
+            <h2 className="mb-4 text-2xl font-bold md:text-3xl lg:text-4xl">
+              Join our newsletter to keep up to date with us!
+            </h2>
+            <p className="mx-auto mb-6 max-w-xl text-sm text-gray-600 md:text-base lg:mb-8">
+              With <strong>Microsoft For Startups</strong> as our partner, we
+              are rolling out new features and events everytime. Subscribe to
+              our newsletter to stay updated.
+            </p>
+
+            <form
+              className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
+              aria-label="Newsletter subscription form"
+            >
+              <div className="flex-grow">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  aria-label="Email input"
+                />
+              </div>
+              <Button animate="gooeyLeft" type="submit">
+                Subscribe
+              </Button>
+            </form>
+
+            <div className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-500 lg:justify-start">
+              <div className="flex items-center gap-2">
+                <ShieldCheckIcon className="text-cyan-600" size={19} />
+                <span>100% Secure</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <InfoIcon className="text-cyan-600" size={18} />
+                <span>No Spam</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section
           id="faq"
-          className="mx-12 flex min-h-[240px] flex-col justify-between pt-24 lg:mx-40 lg:flex-row lg:gap-12 lg:pt-32"
+          className="flex min-h-[400px] flex-col justify-between px-12 pt-24 md:px-24 lg:gap-12 lg:px-40 lg:pt-40 xl:flex-row 2xl:px-80"
         >
-          <div className="mb-8 lg:mb-0">
-            <h2 className="text-4xl font-bold lg:whitespace-nowrap lg:text-6xl">
+          <div className="mb-8 flex flex-col justify-center md:flex-row md:justify-between lg:mb-0 lg:items-start xl:flex-col xl:justify-start">
+            <h2 className="lg:text text-4xl font-bold lg:whitespace-nowrap 2xl:text-6xl">
               Got questions? <br /> We&apos;ve got answers!
             </h2>
             <Button
               variant="ghost"
-              className="mt-6 lg:mt-12"
+              animate="gooeyLeft"
+              className="mt-6 w-fit lg:mt-12"
               onClick={() => {
                 router.push("/faqs");
               }}
@@ -190,7 +270,7 @@ export default function Home() {
               More FAQs <ArrowRightIcon className="ml-2 h-4 w-4" />
             </Button>
           </div>
-          <Accordion type="single" collapsible className="w-full lg:w-1/2">
+          <Accordion type="single" collapsible className="w-full xl:w-1/2">
             {[
               {
                 question: "What is Triangles?",
@@ -217,80 +297,8 @@ export default function Home() {
             ))}
           </Accordion>
         </section>
-
-        {/* Newsletter Section */}
-        <section
-          id="newsletter"
-          className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-12 pt-24 lg:flex-row lg:gap-12"
-        >
-          <div className="flex w-full items-center justify-center p-4 lg:w-1/2 lg:p-0">
-            <div className="relative w-full max-w-md transition-transform duration-300 hover:scale-105 lg:max-w-lg">
-              <Image src={ms_badge} alt="Microsoft for Startups" />
-            </div>
-          </div>
-
-          <div className="flex w-full flex-col justify-center text-center lg:w-1/2 lg:text-left">
-            <h2 className="mb-4 text-2xl font-bold md:text-3xl lg:text-4xl">
-              Join our newsletter to keep up to date with us!
-            </h2>
-            <p className="mb-6 max-w-xl text-sm text-gray-600 md:text-base lg:mb-8">
-              With Microsoft For Startups as our partner, we are rolling out new
-              features and events everytime. Subscribe to our newsletter to stay
-              updated.
-            </p>
-
-            <form
-              className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
-              aria-label="Newsletter subscription form"
-            >
-              <div className="flex-grow">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  aria-label="Email input"
-                />
-              </div>
-              <Button type="submit">Subscribe</Button>
-            </form>
-
-            <div className="mt-6 flex items-center justify-center gap-6 text-sm text-gray-500 lg:justify-start">
-              <div className="flex items-center gap-2">
-                <ShieldCheckIcon className="text-teal-600" size={19} />
-                <span>100% Secure</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <InfoIcon className="text-teal-600" size={18} />
-                <span>No Spam</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Nasio Widget */}
-        <section
-          id="nasio"
-          className="mx-auto flex flex-col items-center justify-center px-12 pt-24 lg:mx-40 lg:flex-row"
-        >
-          <div className="flex flex-col justify-center text-center lg:text-left">
-            <h2 className="mb-4 text-2xl font-bold md:text-3xl lg:text-4xl">
-              Join our exclusive community!
-            </h2>
-            <p className="mb-6 max-w-xl text-sm text-gray-600 md:text-base lg:mb-8">
-              We will soon bring you the worldly opportunities! But till then
-              it&apos;s all about community🔥 Did I mention we&apos;re backed by
-              Microsoft for Startups? So trust us when we say this is the place
-              to be. 😎
-            </p>
-          </div>
-          <iframe
-            title="TRIANGLES_2 checkout widget"
-            src="https://nas.io/checkout-widget?communityCode=TRIANGLES_2&communitySlug=%2Ftriangles&buttonText=Join%20as%20member&buttonTextColorHex=%23fff&buttonBgColorHex=%230097b2&widgetTheme=light&backgroundColorHex=%23fff"
-            height="300"
-            referrerPolicy="no-referrer"
-          ></iframe>
-        </section>
       </main>
-      <Footer />
+      <Footer className="lg:mt-32" />
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <GoogleTagManager gtmId="GTM-597LXR5M" />
       </head>
-      <body className="vsc-initialized flex min-h-screen flex-col text-teal-950 antialiased">
+      <body className="vsc-initialized flex min-h-screen flex-col text-cyan-950 antialiased">
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-597LXR5M"

@@ -1,5 +1,6 @@
 export { BsInfoCircle as InfoIcon } from "react-icons/bs";
 export {
+  FaArrowLeft as ArrowLeftIcon,
   FaArrowRight as ArrowRightIcon,
   FaBars as BarsIcon,
   FaBookmark as BookmarkIcon,

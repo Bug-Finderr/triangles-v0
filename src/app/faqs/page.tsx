@@ -161,14 +161,14 @@ function FaqPageContent() {
   }, []);
 
   return (
-    <div className="flex flex-col flex-grow">
+    <div className="flex flex-grow flex-col">
       <Navbar />
       <SkeletonWrapper loading={loading || !category}>
-        <main className="flex-grow container mx-auto p-8 flex flex-col">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-teal-950 text-center mb-8">
+        <main className="container mx-auto flex flex-grow flex-col p-8">
+          <h2 className="mb-8 text-center text-2xl font-bold sm:text-3xl lg:text-4xl">
             Got questions? Look Here.
           </h2>
-          <div className="flex flex-col lg:flex-row gap-8 flex-grow">
+          <div className="flex flex-grow flex-col gap-8 lg:flex-row">
             <Categories
               categories={allCategories}
               selected={category}
@@ -176,7 +176,7 @@ function FaqPageContent() {
               available={faqCategories}
               isMobile={isMobile}
             />
-            <div className="lg:w-1/2 md:w-3/4 md:mx-auto lg:mx-0 w-full flex flex-col gap-20 sm:flex-grow lg:flex-grow-0">
+            <div className="flex w-full flex-col gap-20 sm:flex-grow md:mx-auto md:w-3/4 lg:mx-0 lg:w-1/2 lg:flex-grow-0">
               <Accordion type="single" collapsible className="w-full">
                 {selectedFaqs.map((faq, index) => (
                   <AccordionItem
@@ -184,10 +184,10 @@ function FaqPageContent() {
                     value={`item-${index}`}
                     className="mb-4"
                   >
-                    <AccordionTrigger className="text-base sm:text-lg lg:text-xl font-semibold py-3 px-4">
+                    <AccordionTrigger className="px-4 py-3 text-base font-semibold sm:text-lg lg:text-xl">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-sm sm:text-base py-3 px-4">
+                    <AccordionContent className="px-4 py-3 text-sm sm:text-base">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -212,12 +212,12 @@ const SkeletonWrapper: React.FC<SkeletonWrapperProps> = ({
 }) => {
   if (loading) {
     return (
-      <div className="flex flex-col flex-grow">
-        <main className="flex-grow container mx-auto p-8 flex flex-col">
-          <Skeleton className="h-8 md:h-10 w-72 md:w-[450px] mx-auto mb-8" />
+      <div className="flex flex-grow flex-col">
+        <main className="container mx-auto flex flex-grow flex-col p-8">
+          <Skeleton className="mx-auto mb-8 h-8 w-72 md:h-10 md:w-[450px]" />
 
-          <div className="flex flex-col lg:flex-row gap-8 flex-grow">
-            <div className="lg:hidden overflow-x-auto whitespace-nowrap pb-2 scrollbar-hide">
+          <div className="flex flex-grow flex-col gap-8 lg:flex-row">
+            <div className="overflow-x-auto whitespace-nowrap pb-2 scrollbar-hide lg:hidden">
               <div className="inline-flex space-x-2">
                 {Array.from({ length: 8 }, (_, i) => (
                   <Skeleton key={i} className="h-6 w-24 rounded-full" />
@@ -225,8 +225,8 @@ const SkeletonWrapper: React.FC<SkeletonWrapperProps> = ({
               </div>
             </div>
 
-            <aside className="hidden lg:block lg:w-1/4 border p-6 rounded-lg">
-              <Skeleton className="h-8 w-32 mb-6" />
+            <aside className="hidden rounded-lg border p-6 lg:block lg:w-1/4">
+              <Skeleton className="mb-6 h-8 w-32" />
               <div className="space-y-3">
                 {Array.from({ length: 5 }, (_, i) => (
                   <div key={i} className="flex items-center justify-between">
@@ -236,11 +236,11 @@ const SkeletonWrapper: React.FC<SkeletonWrapperProps> = ({
               </div>
             </aside>
 
-            <div className="lg:w-1/2 md:w-3/4 md:mx-auto lg:mx-0 w-full flex flex-col gap-20 sm:flex-grow lg:flex-grow-0">
+            <div className="flex w-full flex-col gap-20 sm:flex-grow md:mx-auto md:w-3/4 lg:mx-0 lg:w-1/2 lg:flex-grow-0">
               <div className="w-full">
                 {Array.from({ length: 5 }, (_, i) => (
                   <div key={i} className="mb-4 border-b">
-                    <div className="py-3 px-4">
+                    <div className="px-4 py-3">
                       <Skeleton className="h-7 w-full" />
                     </div>
                   </div>
@@ -248,10 +248,10 @@ const SkeletonWrapper: React.FC<SkeletonWrapperProps> = ({
               </div>
 
               <div className="mt-auto text-center">
-                <Skeleton className="h-8 w-48 mx-auto mb-2" />
-                <Skeleton className="h-5 w-full md:w-96 mx-auto mb-4" />
+                <Skeleton className="mx-auto mb-2 h-8 w-48" />
+                <Skeleton className="mx-auto mb-4 h-5 w-full md:w-96" />
 
-                <form className="grid gap-4 lg:w-2/3 mx-auto">
+                <form className="mx-auto grid gap-4 lg:w-2/3">
                   <Skeleton className="h-10 w-full" />
                   <Skeleton className="h-10 w-full" />
                   <Skeleton className="h-20 w-full" />
@@ -306,7 +306,7 @@ const CategoriesMobile: React.FC<CategoriesProps> = ({
             variant={selected === category ? "default" : "outline"}
             className={cn(
               "cursor-pointer",
-              isAvailable ? "" : "opacity-50 cursor-not-allowed",
+              isAvailable ? "" : "cursor-not-allowed opacity-50",
             )}
             onClick={() => isAvailable && onSelect(category)}
           >
@@ -327,8 +327,8 @@ const CategoriesSidebar: React.FC<CategoriesProps> = ({
   onSelect,
   available,
 }) => (
-  <aside className="lg:w-1/4 border p-6 rounded-lg flex flex-col min-h-full">
-    <h3 className="text-xl font-semibold mb-6 text-teal-700">Categories</h3>
+  <aside className="flex min-h-full flex-col rounded-lg border p-6 lg:w-1/4">
+    <h3 className="mb-6 text-xl font-semibold text-cyan-700">Categories</h3>
     <ul className="space-y-3">
       {categories.map((category) => {
         const isAvailable =
@@ -341,7 +341,7 @@ const CategoriesSidebar: React.FC<CategoriesProps> = ({
               "transition-colors duration-200",
               isAvailable ? "cursor-pointer" : "cursor-not-allowed",
               selected === category
-                ? "text-teal-600 font-semibold"
+                ? "font-semibold text-cyan-600"
                 : isAvailable
                   ? "text-gray-700 hover:text-teal-600"
                   : "text-gray-400",
@@ -351,7 +351,7 @@ const CategoriesSidebar: React.FC<CategoriesProps> = ({
             <div className="flex items-center justify-between">
               <span>{category}</span>
               {!isAvailable && (
-                <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">
+                <span className="rounded-full bg-gray-200 px-2 py-1 text-xs text-gray-600">
                   Coming Soon
                 </span>
               )}
@@ -369,13 +369,13 @@ const ContactForm: React.FC<ContactFormProps> = ({
   onSubmit,
 }) => (
   <div className="mt-auto text-center">
-    <h3 className="text-xl font-bold mb-2 text-teal-700">
+    <h3 className="mb-2 text-xl font-bold text-cyan-700">
       Still got questions?
     </h3>
-    <p className="text-gray-600 mb-4">
+    <p className="mb-4 text-gray-600">
       Can&apos;t find the answer you&apos;re looking for? Please email us.
     </p>
-    <form onSubmit={onSubmit} className="grid gap-4 lg:w-2/3 mx-auto">
+    <form onSubmit={onSubmit} className="mx-auto grid gap-4 lg:w-2/3">
       <Input
         type="email"
         name="email"
@@ -399,7 +399,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         onChange={onChange}
         required
       />
-      <Button type="submit" className="w-fit ml-auto">
+      <Button type="submit" className="ml-auto w-fit">
         Submit
       </Button>
     </form>

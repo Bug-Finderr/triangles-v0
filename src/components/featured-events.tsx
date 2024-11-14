@@ -3,6 +3,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import {
   ArrowRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -11,9 +17,12 @@ import {
 } from "@/components/ui/icons";
 import { Skeleton } from "@/components/ui/skeleton";
 import icon from "@/public/icon.svg";
+import Autoplay from "embla-carousel-autoplay";
 import Image, { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+// TODO: Fix the shadows
 
 interface Event {
   id: number;
@@ -49,12 +58,10 @@ function EventContent({ event }: { event: Event }) {
   const router = useRouter();
 
   return (
-    <div className="w-full overflow-hidden rounded-3xl bg-white shadow-xl">
+    <div className="w-full overflow-hidden rounded-3xl shadow-xl">
       <div
         className="relative h-[200px] bg-secondary sm:h-[300px] md:h-[400px] lg:h-[450px]"
-        onClick={() => {
-          router.push("/coming-soon");
-        }}
+        onClick={() => router.push("/coming-soon")}
       >
         <div className="absolute inset-0">
           {event.image ? (
@@ -89,7 +96,7 @@ function EventContent({ event }: { event: Event }) {
           )}
         </div>
 
-        <div className="absolute inset-0 hidden bg-gradient-to-t from-teal-950/80 via-teal-950/40 to-transparent md:block" />
+        <div className="absolute inset-0 hidden bg-gradient-to-t from-cyan-950/80 via-cyan-950/40 to-transparent md:block" />
 
         <div className="absolute inset-0 hidden flex-col justify-end p-8 md:flex">
           <h3 className="mb-2 text-3xl font-bold text-white lg:text-4xl">
@@ -153,24 +160,21 @@ function EventContent({ event }: { event: Event }) {
   );
 }
 
+const autoplayPlugin = Autoplay({ delay: 4400, stopOnInteraction: true });
+
 export default function FeaturedEvents() {
   const [events, setEvents] = useState<Event[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [api, setApi] = useState<CarouselApi>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const handleNavigation = (direction: "left" | "right") =>
+    direction === "left" ? api?.scrollPrev() : api?.scrollNext();
 
   useEffect(() => {
     const generatedEvents = generateEvents(6);
     setEvents(generatedEvents);
     setIsLoading(false);
   }, []);
-
-  const handleNavigation = (direction: "left" | "right") => {
-    setCurrentIndex((prev) => {
-      if (direction === "left")
-        return prev === 0 ? events.length - 1 : prev - 1;
-      return prev === events.length - 1 ? 0 : prev + 1;
-    });
-  };
 
   return (
     <FeaturedSkeleton loading={isLoading || !events.length}>
@@ -183,25 +187,38 @@ export default function FeaturedEvents() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => {
-              handleNavigation("left");
-            }}
+            onClick={() => handleNavigation("left")}
           >
             <ChevronLeftIcon size={16} />
           </Button>
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => {
-              handleNavigation("right");
-            }}
+            onClick={() => handleNavigation("right")}
           >
             <ChevronRightIcon size={16} />
           </Button>
         </div>
       </div>
 
-      {events[currentIndex] && <EventContent event={events[currentIndex]} />}
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        plugins={[autoplayPlugin]}
+        setApi={setApi}
+        showControls={false}
+        className="shadow-xl"
+      >
+        <CarouselContent>
+          {events.map((event, index) => (
+            <CarouselItem key={index}>
+              <EventContent event={event} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </FeaturedSkeleton>
   );
 }

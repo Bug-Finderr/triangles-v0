@@ -1,3 +1,5 @@
+"use server";
+
 import faqs from "../mocks/faqs.json";
 
 export interface Faq {
@@ -10,6 +12,12 @@ export interface FaqCategory {
   questions: Faq[];
 }
 
+export interface ContactFormData {
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export async function fetchFaqs(): Promise<FaqCategory[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -18,13 +26,6 @@ export async function fetchFaqs(): Promise<FaqCategory[]> {
   });
 }
 
-export async function fetchFaqsByCategory(category: string): Promise<Faq[]> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const categoryFaqs = (faqs as FaqCategory[]).find(
-        (faq) => faq.category.toLowerCase() === category.toLowerCase(),
-      );
-      resolve(categoryFaqs ? categoryFaqs.questions : []);
-    }, 1000);
-  });
+export async function submitContactForm(data: ContactFormData): Promise<void> {
+  console.log("Contact Form Data:", data);
 }

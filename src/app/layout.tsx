@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import { ScreenSize } from "@/components/dev/screen-size";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { NuqsAdapter } from "nuqs/adapters/next";
 
@@ -17,9 +18,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <GoogleTagManager gtmId="GTM-597LXR5M" />
+        <GoogleTagManager gtmId={process.env.GTM_ID!} />
       </head>
-      <body className="vsc-initialized flex min-h-screen flex-col text-cyan-950 antialiased">
+      <body
+        className="vsc-initialized flex min-h-screen flex-col text-cyan-950 antialiased"
+        suppressHydrationWarning
+      >
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-597LXR5M"
@@ -29,6 +33,7 @@ export default function RootLayout({
           />
         </noscript>
         <NuqsAdapter>{children}</NuqsAdapter>
+        {process.env.NODE_ENV === "development" && <ScreenSize />}
       </body>
     </html>
   );

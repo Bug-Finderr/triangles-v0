@@ -15,14 +15,13 @@ import {
   ClockIcon,
   PeopleIcon,
 } from "@/components/ui/icons";
-import { Skeleton } from "@/components/ui/skeleton";
 import icon from "@/public/icon.svg";
 import Autoplay from "embla-carousel-autoplay";
 import Image, { StaticImageData } from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// TODO: Fix the shadows
+// TODO: Fix the shadows and its container
 
 interface Event {
   id: number;
@@ -55,67 +54,64 @@ const generateEvents = (count: number): Event[] =>
   }));
 
 function EventContent({ event }: { event: Event }) {
-  const router = useRouter();
-
   return (
     <div className="w-full overflow-hidden rounded-3xl shadow-xl">
-      <div
-        className="relative h-[200px] bg-secondary sm:h-[300px] md:h-[400px] lg:h-[450px]"
-        onClick={() => router.push("/coming-soon")}
-      >
-        <div className="absolute inset-0">
-          {event.image ? (
-            <Image
-              src={event.image}
-              alt={event.title}
-              fill
-              className="object-cover"
-            />
-          ) : (
-            <>
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${icon.src})`,
-                  backgroundSize: "80px",
-                  backgroundRepeat: "repeat",
-                  opacity: 0.1,
-                }}
+      <Link href="/coming-soon">
+        <div className="relative h-[200px] bg-secondary sm:h-[300px] md:h-[400px] lg:h-[450px]">
+          <div className="absolute inset-0">
+            {event.image ? (
+              <Image
+                src={event.image}
+                alt={event.title}
+                fill
+                className="object-cover"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative h-28 w-28">
-                  <Image
-                    src={icon}
-                    alt="Event placeholder"
-                    fill
-                    className="object-contain"
-                  />
+            ) : (
+              <>
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${icon.src})`,
+                    backgroundSize: "80px",
+                    backgroundRepeat: "repeat",
+                    opacity: 0.1,
+                  }}
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="relative h-28 w-28">
+                    <Image
+                      src={icon}
+                      alt="Event placeholder"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
-              </div>
-            </>
-          )}
-        </div>
+              </>
+            )}
+          </div>
 
-        <div className="absolute inset-0 hidden bg-gradient-to-t from-cyan-950/80 via-cyan-950/40 to-transparent md:block" />
+          <div className="absolute inset-0 hidden bg-gradient-to-t from-cyan-950/80 via-cyan-950/40 to-transparent md:block" />
 
-        <div className="absolute inset-0 hidden flex-col justify-end p-8 md:flex">
-          <h3 className="mb-2 text-3xl font-bold text-white lg:text-4xl">
-            {event.title}
-          </h3>
-          <p className="mb-4 max-w-2xl text-white/90">{event.description}</p>
-          <div className="flex flex-wrap gap-2">
-            {event.tags.map((tag, idx) => (
-              <Badge
-                key={idx}
-                variant="outline"
-                className="border-white/20 bg-white/10 text-white hover:bg-white/20"
-              >
-                {tag}
-              </Badge>
-            ))}
+          <div className="absolute inset-0 hidden flex-col justify-end p-8 md:flex">
+            <h3 className="mb-2 text-3xl font-bold text-white lg:text-4xl">
+              {event.title}
+            </h3>
+            <p className="mb-4 max-w-2xl text-white/90">{event.description}</p>
+            <div className="flex flex-wrap gap-2">
+              {event.tags.map((tag, idx) => (
+                <Badge
+                  key={idx}
+                  variant="outline"
+                  className="border-white/20 bg-white/10 text-white hover:bg-white/20"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="flex flex-col justify-between bg-white p-6 pt-4 md:pt-6">
         <div className="flex flex-col md:hidden">
@@ -130,16 +126,11 @@ function EventContent({ event }: { event: Event }) {
                 ))}
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full"
-              onClick={() => {
-                router.push("/coming-soon");
-              }}
-            >
-              <ArrowRightIcon size={16} />
-            </Button>
+            <Link href="/coming-soon" passHref>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <ArrowRightIcon size={16} />
+              </Button>
+            </Link>
           </div>
           <p className="mx-1 my-4 text-sm">{event.description}</p>
         </div>
@@ -165,7 +156,6 @@ const autoplayPlugin = Autoplay({ delay: 4400, stopOnInteraction: true });
 export default function FeaturedEvents() {
   const [events, setEvents] = useState<Event[]>([]);
   const [api, setApi] = useState<CarouselApi>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleNavigation = (direction: "left" | "right") =>
     direction === "left" ? api?.scrollPrev() : api?.scrollNext();
@@ -173,11 +163,10 @@ export default function FeaturedEvents() {
   useEffect(() => {
     const generatedEvents = generateEvents(6);
     setEvents(generatedEvents);
-    setIsLoading(false);
   }, []);
 
   return (
-    <FeaturedSkeleton loading={isLoading || !events.length}>
+    <>
       <div className="mx-2 mb-6 flex items-center justify-between">
         <div>
           <h2 className="mb-2 text-3xl font-bold lg:text-4xl">Featured</h2>
@@ -219,61 +208,6 @@ export default function FeaturedEvents() {
           ))}
         </CarouselContent>
       </Carousel>
-    </FeaturedSkeleton>
-  );
-}
-
-function FeaturedSkeleton({
-  loading,
-  children,
-}: {
-  loading: boolean;
-  children: React.ReactNode;
-}) {
-  if (!loading) return children;
-
-  return (
-    <>
-      <div className="mx-2 mb-6 flex items-center justify-between">
-        <div>
-          <Skeleton className="mb-2 h-10 w-36" />
-          <Skeleton className="h-5 w-32" />
-        </div>
-        <div className="flex gap-2">
-          <Skeleton className="h-10 w-10 rounded-lg" />
-          <Skeleton className="h-10 w-10 rounded-lg" />
-        </div>
-      </div>
-
-      <div className="w-full overflow-hidden rounded-3xl bg-white shadow-xl">
-        <Skeleton className="h-[200px] rounded-none sm:h-[300px] md:h-[400px] lg:h-[450px]" />
-
-        <div className="bg-white p-6 pt-4 md:pt-6">
-          <div className="flex flex-col md:hidden">
-            <div className="mb-4 flex items-center justify-between gap-2">
-              <div className="flex-1 space-y-2">
-                <Skeleton className="h-7 w-3/4" />
-                <div className="flex gap-2">
-                  <Skeleton className="h-6 w-16" />
-                  <Skeleton className="h-6 w-16" />
-                </div>
-              </div>
-              <Skeleton className="h-10 w-10 flex-shrink-0 rounded-full" />
-            </div>
-            <Skeleton className="h-20 w-full" />
-          </div>
-
-          <div className="hidden items-center gap-4 text-sm md:flex md:text-base">
-            <Skeleton className="h-5 w-32" />
-            <Skeleton className="h-5 w-32" />
-          </div>
-
-          <div className="mt-4 flex items-center gap-4 text-sm md:hidden md:text-base">
-            <Skeleton className="h-5 w-32" />
-            <Skeleton className="h-5 w-32" />
-          </div>
-        </div>
-      </div>
     </>
   );
 }

@@ -1,3 +1,13 @@
+import Link from "next/link";
+
+const links = [
+  { name: "Privacy Policy", href: "/coming-soon" },
+  { name: "Terms of Service", href: "/coming-soon" },
+  { name: "Sales and Refunds", href: "/coming-soon" },
+  { name: "Legal", href: "/coming-soon" },
+  { name: "Site Map", href: "/coming-soon" },
+];
+
 export default function FooterLegal() {
   return (
     <footer>
@@ -5,19 +15,13 @@ export default function FooterLegal() {
         <span>
           © {new Date().getFullYear()} Triangles. All rights reserved.
         </span>
-        <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 lg:justify-end lg:gap-8">
-          {[
-            "Privacy Policy",
-            "Terms of Service",
-            "Sales and Refunds",
-            "Legal",
-            "Site Map",
-          ].map((item) => (
-            <span key={item} className="whitespace-nowrap">
-              {item}
-            </span>
+        <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 lg:justify-end lg:gap-8">
+          {links.map((link) => (
+            <li key={link.name} className="whitespace-nowrap">
+              <Link href={link.href}>{link.name}</Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </footer>
   );

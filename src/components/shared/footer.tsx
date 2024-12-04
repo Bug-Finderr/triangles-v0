@@ -3,13 +3,13 @@ import { cn } from "@/lib/utils";
 import logo from "@/public/logo-tagline.svg";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { FC, ReactElement } from "react";
 import FooterLegal from "./footerLegal";
 
 interface LinkItem {
   name: string;
   href: string;
-  icon?: React.ReactElement;
+  icon?: ReactElement;
 }
 
 interface LinkListProps {
@@ -17,19 +17,16 @@ interface LinkListProps {
   links: LinkItem[];
 }
 
-const LinkList: React.FC<LinkListProps> = ({ title, links }) => (
+const LinkList: FC<LinkListProps> = ({ title, links }) => (
   <div className="mb-8 lg:mb-0">
     <h3 className="mb-4 text-lg font-bold">{title}</h3>
     <ul className="space-y-2">
       {links.map((link, index) => (
         <li
           key={index}
-          className="relative w-fit after:absolute after:bottom-[-2px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100"
+          className="relative w-fit text-gray-700 after:absolute after:bottom-[-2px] after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-in-out hover:text-cyan-700 hover:after:origin-bottom-left hover:after:scale-x-100"
         >
-          <Link
-            href={link.href}
-            className="flex items-center text-gray-700 hover:text-cyan-800"
-          >
+          <Link href={link.href} className="flex items-center">
             {link.icon && <span className="mr-2">{link.icon}</span>}
             {link.name}
           </Link>
@@ -73,7 +70,7 @@ const footerLinks = {
   ],
 };
 
-const Footer: React.FC<{ className?: string }> = ({ className }) => {
+const Footer: FC<{ className?: string }> = ({ className }) => {
   return (
     <footer className={cn("mt-24 px-4 md:px-16", className)}>
       <div className="mb-8 flex flex-col justify-between px-4 lg:flex-row xl:px-24">

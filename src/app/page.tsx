@@ -1,5 +1,3 @@
-"use client";
-
 import FeaturedEvents from "@/components/featured-events";
 import Footer from "@/components/shared/footer";
 import Navbar from "@/components/shared/navbar";
@@ -25,20 +23,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { founder_info } from "@/constants/founders";
 import { cn } from "@/lib/utils";
-import ms_badge from "@/public//images/ms_badge.png";
 import ComingSoonImage from "@/public/images/events/coming-soon.svg";
 import EventsImage from "@/public/images/events/events.svg";
 import HackathonImage from "@/public/images/events/hackathons.svg";
 import MunImage from "@/public/images/events/mun.svg";
 import LinkedinLogo from "@/public/images/linkedin-logo.svg";
+import ms_badge from "@/public/images/ms_badge.png";
 import logo from "@/public/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
@@ -68,17 +63,15 @@ export default function Home() {
                 ),
               )}
             </div>
-            <Button
-              animate="expandIcon"
-              icon={<ArrowRightIcon size={16} />}
-              iconPlacement="right"
-              className="ml-auto mt-10"
-              onClick={() => {
-                router.push("/coming-soon");
-              }}
-            >
-              Explore more
-            </Button>
+            <Link href="/coming-soon" passHref className="ml-auto mt-10">
+              <Button
+                animate="expandIcon"
+                icon={<ArrowRightIcon size={16} />}
+                iconPlacement="right"
+              >
+                Explore more
+              </Button>
+            </Link>
           </div>
         </section>
 
@@ -118,7 +111,7 @@ export default function Home() {
 
         {/* About Us Section */}
         <section
-          id="about-us"
+          id="about"
           className="px-14 pt-24 text-center md:px-24 lg:px-20 lg:pt-40 xl:px-40"
         >
           <h2 className="mb-4 text-3xl font-black lg:text-[40px]">About Us</h2>
@@ -259,16 +252,11 @@ export default function Home() {
             <h2 className="lg:text text-4xl font-bold lg:whitespace-nowrap 2xl:text-6xl">
               Got questions? <br /> We&apos;ve got answers!
             </h2>
-            <Button
-              variant="ghost"
-              animate="gooeyLeft"
-              className="mt-6 w-fit lg:mt-12"
-              onClick={() => {
-                router.push("/faqs");
-              }}
-            >
-              More FAQs <ArrowRightIcon className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href="/faqs" passHref className="mt-6 w-fit lg:mt-12">
+              <Button variant="ghost" animate="gooeyLeft">
+                More FAQs <ArrowRightIcon className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
           <Accordion type="single" collapsible className="w-full xl:w-1/2">
             {[

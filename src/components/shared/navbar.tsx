@@ -5,12 +5,17 @@ import { BarsIcon, XIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 import icon from "@/public/icon.svg";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState } from "react";
+
+const links = Object.freeze([
+  ["Home", "/#home"],
+  ["Events", "/#events"],
+  ["About Us", "/#about"],
+]);
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const router = useRouter();
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between bg-white px-4 py-3 shadow-sm md:px-8 lg:px-24">
@@ -24,78 +29,62 @@ export default function Navbar() {
         )}
       >
         <div className="flex h-full flex-col items-center justify-center lg:h-auto lg:flex-row">
-          {["Home", "Events", "About Us"].map((item) => (
+          {links.map(([label, href]) => (
             <a
-              key={item}
-              href={`/#${item.toLowerCase().replace(" ", "-")}`}
+              key={label}
+              href={href}
               className="relative mx-6 py-4 text-xl font-bold lg:py-0 lg:text-base"
-              onClick={() => {
-                setMobileMenuOpen(false);
-              }}
+              onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="relative w-fit transition-colors after:absolute after:bottom-[-2px] after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-in-out hover:text-cyan-600 hover:after:origin-bottom-left hover:after:scale-x-100">
-                {item}
+              <span className="relative w-fit after:absolute after:bottom-[-2px] after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-in-out hover:text-cyan-700 hover:after:origin-bottom-left hover:after:scale-x-100">
+                {label}
               </span>
             </a>
           ))}
-          <Button
-            size="lg"
-            animate="gooeyLeft"
-            className="mt-6 lg:hidden"
-            onClick={() => {
-              router.push("/coming-soon");
-            }}
-          >
-            Login
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            animate="gooeyLeft"
-            className="mt-6 lg:hidden"
-            onClick={() => {
-              router.push("/coming-soon");
-            }}
-          >
-            Host
-          </Button>
+          <Link href="/coming-soon" passHref>
+            <Button size="lg" animate="gooeyLeft" className="mt-6 lg:hidden">
+              Login
+            </Button>
+          </Link>
+          <Link href="/coming-soon" passHref>
+            <Button
+              variant="outline"
+              size="lg"
+              animate="gooeyLeft"
+              className="mt-6 lg:hidden"
+            >
+              Host
+            </Button>
+          </Link>
         </div>
       </nav>
       <div className="flex items-center gap-2 lg:gap-4">
-        <Button
-          size="sm"
-          animate="gooeyLeft"
-          className="hidden lg:inline-flex"
-          onClick={() => {
-            router.push("/coming-soon");
-          }}
-        >
-          Login
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          animate="gooeyLeft"
-          className="hidden lg:inline-flex"
-          onClick={() => {
-            router.push("/coming-soon");
-          }}
-        >
-          Host
-        </Button>
+        <Link href="/coming-soon" passHref>
+          <Button
+            size="sm"
+            animate="gooeyLeft"
+            className="hidden lg:inline-flex"
+          >
+            Login
+          </Button>
+        </Link>
+        <Link href="/coming-soon" passHref>
+          <Button
+            variant="outline"
+            size="sm"
+            animate="gooeyLeft"
+            className="hidden lg:inline-flex"
+          >
+            Host
+          </Button>
+        </Link>
         <Button
           variant="ghost"
           size="sm"
           className="z-50 lg:hidden"
-          onClick={() => {
-            setMobileMenuOpen(!mobileMenuOpen);
-          }}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          {mobileMenuOpen ? (
-            <XIcon className="h-6 w-6" />
-          ) : (
-            <BarsIcon className="h-6 w-6" />
-          )}
+          {mobileMenuOpen ? <XIcon size={20} /> : <BarsIcon size={20} />}
         </Button>
       </div>
     </header>
